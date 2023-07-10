@@ -89,15 +89,10 @@ public class ClientServiceImpl implements ClientService {
 
     @Override
     public void deleteClient(CustomUserDetails loggedUser, Long clientId) {
+        log.info("Deleting client...");
         List<Client> clients = (List<Client>) clientRepository.findAll();
-        clients.stream()
-                .filter(client -> Objects.equals(client.getUserId().getId(), loggedUser.getId()))
-                .forEach(client -> {
-                    if (clientRepository.existsById(clientId)) {
-                        clientRepository.deleteById(clientId);
-                    } else {
-                        throw new ApiRequestException("You do not have this client!");
-                    }
-                });
+        clients.stream().filter(client -> Objects.equals(client.getUserId().getId(), loggedUser.getId()))
+                .filter(client -> Objects.equals(client.getId(), clientId))
+                .forEach(client -> clientRepository.deleteById(client.getId()));
     }
 }
