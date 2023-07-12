@@ -1,5 +1,6 @@
 package com.laywerapi.laywerapi.services.implementation;
 
+import com.laywerapi.laywerapi.dto.response.ClientResponseDTO;
 import com.laywerapi.laywerapi.entity.Client;
 import com.laywerapi.laywerapi.entity.CustomUserDetails;
 import com.laywerapi.laywerapi.exception.ApiRequestException;
@@ -86,6 +87,40 @@ class ClientServiceImplTest {
 
         // ASSERT
         assertNotNull(clientList);
-        
+    }
+
+    @Test
+    void testGetOneClientByFirstName() {
+        // GIVEN
+        var user = TestUtil.createUser();
+        var loggedUser = new CustomUserDetails(user);
+        var firstName = "FirstName";
+        var clientList = TestUtil.clientsList();
+        var clientResponseDTOsList=TestUtil.clientResponseDTOSList(clientList);
+
+        // WHEN
+        when(clientRepository.findAll()).thenReturn(clientList);
+
+        // ACTION
+        clientResponseDTOsList = clientServiceImp.getOneByFirstName(loggedUser, firstName.toUpperCase());
+
+        // ASSERT
+        assertNotNull(clientResponseDTOsList);
+    }
+
+    @Test
+    void testCantGetClientByFirstName() {
+        // GIVEN
+        var user = TestUtil.createUser();
+        var loggedUser = new CustomUserDetails(user);
+        var firstName = "FirstName";
+        var clientList = TestUtil.clientsList();
+        var clientResponseDTOsList=TestUtil.clientResponseDTOSList(clientList);
+
+        // WHEN
+        when(clientRepository.findAll()).thenReturn(List.of());
+
+        // ASSERT
+        assertThrows(ApiRequestException.class, () -> clientServiceImp.getOneByFirstName(loggedUser, firstName));
     }
 }

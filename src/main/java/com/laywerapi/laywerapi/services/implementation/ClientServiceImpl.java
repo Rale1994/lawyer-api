@@ -60,11 +60,17 @@ public class ClientServiceImpl implements ClientService {
     public List<ClientResponseDTO> getOneByFirstName(CustomUserDetails loggedUser, String clientName) {
         log.info("Getting one client by first name");
         List<Client> clients = (List<Client>) clientRepository.findAll();
-        return clients.stream()
+        List<ClientResponseDTO> clientResponseDTOS = clients.stream()
                 .filter(client -> Objects.equals(client.getUserId().getId(), loggedUser.getId()))
                 .filter(client -> Objects.equals(client.getFirstName(), clientName.toUpperCase()))
                 .map(ClientResponseDTO::new)
                 .collect(Collectors.toList());
+        if (clientResponseDTOS.isEmpty()) {
+            log.warn("Getting client who doesn't exist for this user!");
+            throw new ApiRequestException("You don't have this client!");
+        } else {
+            return clientResponseDTOS;
+        }
     }
 
     @Override

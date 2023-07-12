@@ -2,10 +2,12 @@ package com.laywerapi.laywerapi.dto.response;
 
 import com.laywerapi.laywerapi.entity.Client;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import javax.validation.constraints.NotBlank;
 
 @Data
+@NoArgsConstructor
 public class ClientResponseDTO {
     @NotBlank
     private String firstName;

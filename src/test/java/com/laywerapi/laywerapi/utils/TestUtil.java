@@ -3,6 +3,7 @@ package com.laywerapi.laywerapi.utils;
 import com.laywerapi.laywerapi.dto.request.ClientRequestDTO;
 import com.laywerapi.laywerapi.dto.request.UserAddRequestDTO;
 import com.laywerapi.laywerapi.dto.request.UserUpdateRequestDTO;
+import com.laywerapi.laywerapi.dto.response.ClientResponseDTO;
 import com.laywerapi.laywerapi.dto.response.UserUpdatedResponseDTO;
 import com.laywerapi.laywerapi.entity.Client;
 import com.laywerapi.laywerapi.entity.User;
@@ -10,6 +11,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class TestUtil {
     private static PasswordEncoder passwordEncoder;
@@ -110,5 +112,33 @@ public class TestUtil {
         List<Client> clients = new ArrayList<>();
         clients.add(TestUtil.createClient(clientRequestDTO, user));
         return clients;
+    }
+
+    public static List<Client> clientsList() {
+        List<Client> clients = new ArrayList<>();
+        Client client = new Client();
+        String firstName="FirstName";
+        client.setFirstName(firstName.toUpperCase());
+        client.setLastName("LastName");
+        client.setPhone("123123091230");
+        client.setEmail("cl@example.com");
+        client.setIdNumber(12391283091283L);
+        client.setUserId(TestUtil.createUser());
+        clients.add(client);
+        return clients;
+    }
+
+    public static ClientResponseDTO createClientResponseDto() {
+        ClientResponseDTO clientResponseDTO = new ClientResponseDTO();
+        clientResponseDTO.setFirstName("FirstName");
+        clientResponseDTO.setLastName("LastName");
+        clientResponseDTO.setPhone("123123091230");
+        clientResponseDTO.setEmail("cl@example.com");
+
+        return clientResponseDTO;
+    }
+
+    public static List<ClientResponseDTO> clientResponseDTOSList(List<Client> clients) {
+        return clients.stream().map(ClientResponseDTO::new).collect(Collectors.toList());
     }
 }
