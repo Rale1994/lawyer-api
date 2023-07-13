@@ -26,8 +26,8 @@ public class ClientController {
 
     @PreAuthorize("hasRole('ROLE_USER')")
     @PostMapping("/add")
-    public void addClient(@AuthenticationPrincipal CustomUserDetails loggedUser, @RequestBody ClientRequestDTO clientRequestDTO) throws Exception {
-        clientService.addClient(loggedUser, clientRequestDTO);
+    public ClientResponseDTO addClient(@AuthenticationPrincipal CustomUserDetails loggedUser, @RequestBody ClientRequestDTO clientRequestDTO) throws Exception {
+        return clientService.addClient(loggedUser, clientRequestDTO);
     }
 
     @PreAuthorize("hasRole('ROLE_USER')")

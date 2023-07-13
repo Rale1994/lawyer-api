@@ -9,7 +9,7 @@ import com.laywerapi.laywerapi.entity.CustomUserDetails;
 import java.util.List;
 
 public interface UserService {
-    void createAccount(UserAddRequestDTO userAddRequestDTO) throws Exception;
+    UserResponseDTO createAccount(UserAddRequestDTO userAddRequestDTO) throws Exception;
     UserUpdatedResponseDTO findUserForUpdate(CustomUserDetails loggedUser, UserUpdateRequestDTO userUpdateRequestDTO) throws Exception;
 
     List<UserResponseDTO> findAll();

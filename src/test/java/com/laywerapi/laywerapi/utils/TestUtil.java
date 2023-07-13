@@ -6,20 +6,20 @@ import com.laywerapi.laywerapi.dto.request.UserUpdateRequestDTO;
 import com.laywerapi.laywerapi.dto.response.ClientResponseDTO;
 import com.laywerapi.laywerapi.dto.response.UserUpdatedResponseDTO;
 import com.laywerapi.laywerapi.entity.Client;
+import com.laywerapi.laywerapi.entity.CustomUserDetails;
 import com.laywerapi.laywerapi.entity.User;
-import org.springframework.security.crypto.password.PasswordEncoder;
+import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
 public class TestUtil {
-    private static PasswordEncoder passwordEncoder;
 
     public static UserAddRequestDTO createUserAddRequestDTO() {
         UserAddRequestDTO userAddRequestDTO = new UserAddRequestDTO();
-        userAddRequestDTO.setFirstName("FirstName");
-        userAddRequestDTO.setLastName("LastName");
+        userAddRequestDTO.setFirstName("FIRSTNAME");
+        userAddRequestDTO.setLastName("LASTNAME");
         userAddRequestDTO.setEmail("email@example.com");
         userAddRequestDTO.setPhone("+38145845687");
         userAddRequestDTO.setUsername("username");
@@ -31,17 +31,29 @@ public class TestUtil {
     public static User createUser() {
         User user = new User();
         user.setId(1234L);
-        user.setFirstName("FirstName");
-        user.setLastName("LastName");
+        user.setFirstName("FIRSTNAME");
+        user.setLastName("LASTNAME");
         user.setEmail("email@example.com");
         user.setPhone("+38145845687");
         user.setUsername("username");
         user.setPassword("password");
-        user.setRole("USER");
+        user.setRole("ROLE_USER");
 
         return user;
     }
+    public static User newCreateUser() {
+        User user = new User();
+//        user.setId(1234L);
+        user.setFirstName("FIRSTNAME");
+        user.setLastName("LASTNAME");
+        user.setEmail("email@example.com");
+        user.setPhone("+38145845687");
+        user.setUsername("username");
+        user.setPassword("password");
+        user.setRole("ROLE_USER");
 
+        return user;
+    }
     public static User createUpdatedUser() {
         User user = new User();
         user.setId(1234L);
@@ -98,8 +110,9 @@ public class TestUtil {
 
     public static Client createClient(ClientRequestDTO clientRequestDTO, User user) {
         Client client = new Client();
-        client.setFirstName(clientRequestDTO.getFirstName());
-        client.setLastName(clientRequestDTO.getLastName());
+        client.setId(12345L);
+        client.setFirstName(clientRequestDTO.getFirstName().toUpperCase());
+        client.setLastName(clientRequestDTO.getLastName().toUpperCase());
         client.setPhone(clientRequestDTO.getPhone());
         client.setEmail(clientRequestDTO.getEmail());
         client.setIdNumber(clientRequestDTO.getIdNumber());
@@ -117,7 +130,7 @@ public class TestUtil {
     public static List<Client> clientsList() {
         List<Client> clients = new ArrayList<>();
         Client client = new Client();
-        String firstName="FirstName";
+        String firstName = "FirstName";
         client.setFirstName(firstName.toUpperCase());
         client.setLastName("LastName");
         client.setPhone("123123091230");
@@ -128,17 +141,44 @@ public class TestUtil {
         return clients;
     }
 
-    public static ClientResponseDTO createClientResponseDto() {
+    public static ClientResponseDTO createClientResponseDto(Client client) {
         ClientResponseDTO clientResponseDTO = new ClientResponseDTO();
-        clientResponseDTO.setFirstName("FirstName");
-        clientResponseDTO.setLastName("LastName");
-        clientResponseDTO.setPhone("123123091230");
-        clientResponseDTO.setEmail("cl@example.com");
+        clientResponseDTO.setFirstName(client.getFirstName());
+        clientResponseDTO.setLastName(client.getLastName());
+        clientResponseDTO.setPhone(client.getPhone());
+        clientResponseDTO.setEmail(client.getEmail());
 
         return clientResponseDTO;
     }
 
     public static List<ClientResponseDTO> clientResponseDTOSList(List<Client> clients) {
         return clients.stream().map(ClientResponseDTO::new).collect(Collectors.toList());
+    }
+
+    public static Client createUpdatedClient(ClientRequestDTO clientRequestDTO) {
+        Client client = new Client();
+        client.setFirstName(clientRequestDTO.getFirstName());
+        client.setLastName(clientRequestDTO.getLastName());
+        client.setPhone(clientRequestDTO.getPhone());
+        client.setEmail(clientRequestDTO.getEmail());
+        client.setIdNumber(clientRequestDTO.getIdNumber());
+
+        return client;
+    }
+
+    public static List<Client> creatSameClientList(Client client, CustomUserDetails loggedUser) {
+        List<Client> clients = new ArrayList<>();
+        Client newClient = new Client();
+        newClient.setId(client.getId());
+        newClient.setFirstName(client.getFirstName());
+        newClient.setLastName(client.getLastName());
+        newClient.setPhone(client.getPhone());
+        newClient.setEmail(client.getEmail());
+        newClient.setIdNumber(client.getIdNumber());
+        User user = TestUtil.createUser();
+        user.setId(loggedUser.getId());
+        newClient.setUserId(user);
+        clients.add(newClient);
+        return clients;
     }
 }

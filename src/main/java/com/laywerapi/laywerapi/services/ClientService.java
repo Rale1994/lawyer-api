@@ -7,7 +7,7 @@ import com.laywerapi.laywerapi.entity.CustomUserDetails;
 import java.util.List;
 
 public interface ClientService {
-    void addClient(CustomUserDetails loggedUser, ClientRequestDTO clientRequestDTO) throws Exception;
+    ClientResponseDTO addClient(CustomUserDetails loggedUser, ClientRequestDTO clientRequestDTO) throws Exception;
 
     List<ClientResponseDTO> allClients(CustomUserDetails loggedUser);
 

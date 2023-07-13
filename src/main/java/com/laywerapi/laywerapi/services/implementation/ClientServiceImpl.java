@@ -32,7 +32,7 @@ public class ClientServiceImpl implements ClientService {
     }
 
     @Override
-    public void addClient(CustomUserDetails loggedUser, ClientRequestDTO clientRequestDTO) throws Exception {
+    public ClientResponseDTO addClient(CustomUserDetails loggedUser, ClientRequestDTO clientRequestDTO) throws Exception {
         log.info("Adding client...");
         List<Client> clients = clientRepository.findByEmail(clientRequestDTO.getEmail());
         if (!clients.isEmpty()) {
@@ -44,9 +44,14 @@ public class ClientServiceImpl implements ClientService {
                 }
             }
         }
-        Optional<User> user = userRepository.findById(loggedUser.getId());
-        Client savedClient = new Client(clientRequestDTO, user.get());
-        clientRepository.save(savedClient);
+        Optional<User> userOptional = userRepository.findById(loggedUser.getId());
+        if (userOptional.isEmpty()) {
+            throw new ApiRequestException("Wrong login credential!");
+        }
+        User user = userOptional.get();
+        Client client = new Client(clientRequestDTO, user);
+        Client savedClient = clientRepository.save(client);
+        return new ClientResponseDTO(savedClient);
     }
 
     @Override
@@ -87,9 +92,9 @@ public class ClientServiceImpl implements ClientService {
         }
         log.info("Checking for updates fields...");
         Client client = utils.checkingForUpdatesClient(clientOptional.get(), clientRequestDTO);
-        clientRepository.save(client);
+        Client updatedClient = clientRepository.save(client);
 
-        return new ClientResponseDTO(client);
+        return new ClientResponseDTO(updatedClient);
     }
 
     @Override

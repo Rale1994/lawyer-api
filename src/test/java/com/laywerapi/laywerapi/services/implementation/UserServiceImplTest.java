@@ -1,5 +1,6 @@
 package com.laywerapi.laywerapi.services.implementation;
 
+import com.laywerapi.laywerapi.dto.request.UserAddRequestDTO;
 import com.laywerapi.laywerapi.dto.response.UserResponseDTO;
 import com.laywerapi.laywerapi.dto.response.UserUpdatedResponseDTO;
 import com.laywerapi.laywerapi.entity.CustomUserDetails;
@@ -37,22 +38,21 @@ class UserServiceImplTest {
     @Test
     void testCreateUserAccount() throws Exception {
         // GIVEN
-        var userAddRequestDTO = TestUtil.createUserAddRequestDTO();
-        var user = new User(userAddRequestDTO);
-        user.setId(12346L);
+        UserAddRequestDTO userAddRequestDTO = TestUtil.createUserAddRequestDTO();
+        User user = TestUtil.newCreateUser();
 
         // WHEN
         when(userRepository.findByEmail(userAddRequestDTO.getEmail())).thenReturn(Optional.empty());
         when(userRepository.findByUsername(userAddRequestDTO.getUsername())).thenReturn(Optional.empty());
         when(passwordEncoder.encode(userAddRequestDTO.getPassword())).thenReturn("password");
+        when(userRepository.save(user)).thenReturn(user);
 
         // ACTION
-        userRepository.save(user);
-        userServiceImpl.createAccount(userAddRequestDTO);
+        UserResponseDTO actual = userServiceImpl.createAccount(userAddRequestDTO);
 
         // THEN
-        assertNotNull(user);
-        assertEquals("FirstName", user.getFirstName());
+        assertNotNull(actual);
+        assertEquals("FIRSTNAME", actual.getFirstName());
     }
 
     @Test
@@ -106,11 +106,10 @@ class UserServiceImplTest {
         var userUpdateRequestDTO = TestUtil.createUserUpdateRequestDTO();
         var updatedUser = TestUtil.createUpdatedUser();
 
-
         // WHEN
         when(userRepository.findByUsername(loggedUser.getUsername())).thenReturn(Optional.of(user));
-        when(userRepository.save(updatedUser)).thenReturn(updatedUser);
         when(utils.checkingForUpdatesUser(user, userUpdateRequestDTO)).thenReturn(updatedUser);
+        when(userRepository.save(updatedUser)).thenReturn(updatedUser);
 
 
         // ACTION
@@ -148,7 +147,7 @@ class UserServiceImplTest {
         userServiceImpl.findAll();
 
         // THEN
-        List<UserResponseDTO> userResponseDTOS= users.stream().map(UserResponseDTO::new).collect(Collectors.toList());
+        List<UserResponseDTO> userResponseDTOS = users.stream().map(UserResponseDTO::new).collect(Collectors.toList());
 
         assertNotNull(userResponseDTOS);
     }

@@ -32,7 +32,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public void createAccount(UserAddRequestDTO userAddRequestDTO) throws Exception {
+    public UserResponseDTO createAccount(UserAddRequestDTO userAddRequestDTO) throws Exception {
         log.info("Creating account...");
         Optional<User> userEmail = userRepository.findByEmail(userAddRequestDTO.getEmail());
         Optional<User> userUsername = userRepository.findByUsername(userAddRequestDTO.getUsername());
@@ -41,7 +41,8 @@ public class UserServiceImpl implements UserService {
         }
         User user = new User(userAddRequestDTO);
         user.setPassword(passwordEncoder.encode(userAddRequestDTO.getPassword()));
-        userRepository.save(user);
+        User savedUser = userRepository.save(user);
+        return new UserResponseDTO(savedUser);
     }
 
     @Override

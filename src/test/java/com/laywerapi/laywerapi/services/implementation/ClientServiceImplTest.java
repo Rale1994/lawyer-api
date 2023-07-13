@@ -30,7 +30,7 @@ class ClientServiceImplTest {
     @Mock
     private UserRepository userRepository;
     @Mock
-    private Utils utils;
+    Utils utils;
     @InjectMocks
     private ClientServiceImpl clientServiceImp;
 
@@ -41,18 +41,18 @@ class ClientServiceImplTest {
         var user = TestUtil.createUser();
         var loggedUser = new CustomUserDetails(user);
         var clientRequestDTO = TestUtil.createClientRequestDTO();
-        var client = TestUtil.createClient(clientRequestDTO, user);
+        var client = new Client(clientRequestDTO, user);
 
         // WHEN
         when(clientRepository.findByEmail(clientRequestDTO.getEmail())).thenReturn(List.of());
         when(userRepository.findById(loggedUser.getId())).thenReturn(Optional.of(user));
+        when(clientRepository.save(client)).thenReturn(client);
 
         // ACTION
-        clientRepository.save(client);
-        clientServiceImp.addClient(loggedUser, clientRequestDTO);
+        ClientResponseDTO actual = clientServiceImp.addClient(loggedUser, clientRequestDTO);
 
         // ASSERT
-        assertEquals(clientRequestDTO.getEmail(), client.getEmail());
+        assertEquals(clientRequestDTO.getEmail(), actual.getEmail());
     }
 
     @Test
@@ -61,8 +61,8 @@ class ClientServiceImplTest {
         var user = TestUtil.createUser();
         var loggedUser = new CustomUserDetails(user);
         var clientRequestDTO = TestUtil.createClientRequestDTO();
-        var client = TestUtil.createClient(clientRequestDTO, user);
-        var clientList = TestUtil.creatClientList(clientRequestDTO, user);
+        var client=TestUtil.createClient(clientRequestDTO,user);
+        var clientList = TestUtil.creatSameClientList(client, loggedUser);
 
         // WHEN
         when(clientRepository.findByEmail(clientRequestDTO.getEmail())).thenReturn(clientList);
@@ -96,7 +96,7 @@ class ClientServiceImplTest {
         var loggedUser = new CustomUserDetails(user);
         var firstName = "FirstName";
         var clientList = TestUtil.clientsList();
-        var clientResponseDTOsList=TestUtil.clientResponseDTOSList(clientList);
+        var clientResponseDTOsList = TestUtil.clientResponseDTOSList(clientList);
 
         // WHEN
         when(clientRepository.findAll()).thenReturn(clientList);
@@ -115,12 +115,35 @@ class ClientServiceImplTest {
         var loggedUser = new CustomUserDetails(user);
         var firstName = "FirstName";
         var clientList = TestUtil.clientsList();
-        var clientResponseDTOsList=TestUtil.clientResponseDTOSList(clientList);
+        var clientResponseDTOsList = TestUtil.clientResponseDTOSList(clientList);
 
         // WHEN
         when(clientRepository.findAll()).thenReturn(List.of());
 
         // ASSERT
         assertThrows(ApiRequestException.class, () -> clientServiceImp.getOneByFirstName(loggedUser, firstName));
+    }
+
+    @Test
+    void testUpdateClientInformation() {
+        // GIVEN
+        var user = TestUtil.createUser();
+        var loggedUser = new CustomUserDetails(user);
+        var clientRequestDTO = TestUtil.createClientRequestDTO();
+        var client = new Client(clientRequestDTO, user);
+        var updatedClient = TestUtil.createUpdatedClient(clientRequestDTO);
+        Long clientId = 123456L;
+
+        // WHEN
+        when(clientRepository.findById(clientId)).thenReturn(Optional.of(client));
+        when(utils.checkingForUpdatesClient(client, clientRequestDTO)).thenReturn(updatedClient);
+        when(clientRepository.save(updatedClient)).thenReturn(updatedClient);
+
+        // ACTION
+        ClientResponseDTO actual = clientServiceImp.updateClient(loggedUser, clientRequestDTO, clientId);
+
+        // ASSERT
+        assertNotNull(actual);
+        assertEquals(clientRequestDTO.getFirstName(),updatedClient.getFirstName());
     }
 }

@@ -32,13 +32,12 @@ public class UserController {
     @PreAuthorize("hasRole('ROLE_USER')")
     @PutMapping("/update")
     public UserUpdatedResponseDTO update(@AuthenticationPrincipal CustomUserDetails loggedUser, @RequestBody UserUpdateRequestDTO userUpdateRequestDTO) throws Exception {
-        UserUpdatedResponseDTO userUpdatedResponseDTO = userService.findUserForUpdate(loggedUser, userUpdateRequestDTO);
-        return userUpdatedResponseDTO;
+        return userService.findUserForUpdate(loggedUser, userUpdateRequestDTO);
     }
 
     @PostMapping("/create")
-    public void createAccount(@RequestBody UserAddRequestDTO userAddRequestDTO) throws Exception {
-        userService.createAccount(userAddRequestDTO);
+    public UserResponseDTO createAccount(@RequestBody UserAddRequestDTO userAddRequestDTO) throws Exception {
+        return userService.createAccount(userAddRequestDTO);
     }
 
     @PreAuthorize("hasRole('ROLE_ADMIN')")
