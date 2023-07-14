@@ -61,7 +61,7 @@ class ClientServiceImplTest {
         var user = TestUtil.createUser();
         var loggedUser = new CustomUserDetails(user);
         var clientRequestDTO = TestUtil.createClientRequestDTO();
-        var client=TestUtil.createClient(clientRequestDTO,user);
+        var client = TestUtil.createClient(clientRequestDTO, user);
         var clientList = TestUtil.creatSameClientList(client, loggedUser);
 
         // WHEN
@@ -144,6 +144,58 @@ class ClientServiceImplTest {
 
         // ASSERT
         assertNotNull(actual);
-        assertEquals(clientRequestDTO.getFirstName(),updatedClient.getFirstName());
+        assertEquals(clientRequestDTO.getFirstName(), updatedClient.getFirstName());
+    }
+
+    @Test
+    void testTryToUpdateClientWhoDoesNotExist() {
+        // GIVEN
+        var user = TestUtil.createUser();
+        var loggedUser = new CustomUserDetails(user);
+        var clientRequestDTO = TestUtil.createClientRequestDTO();
+        var client = new Client(clientRequestDTO, user);
+        var updatedClient = TestUtil.createUpdatedClient(clientRequestDTO);
+        Long clientId = 123456L;
+
+        // WHEN
+        when(clientRepository.findById(clientId)).thenReturn(Optional.empty());
+
+        // ASSERT
+        assertThrows(ApiRequestException.class, () -> clientServiceImp.updateClient(loggedUser, clientRequestDTO, clientId));
+    }
+
+    @Test
+    void testTryToUpdateClientWhoDoesNotExistForCurrentlyLawyer() {
+        // GIVEN
+        var user = TestUtil.createUser();
+        user.setId(1111L);
+        var loggedUser = new CustomUserDetails(user);
+        var clientRequestDTO = TestUtil.createClientRequestDTO();
+        var client = new Client(clientRequestDTO, user);
+        var otherClient=TestUtil.createDifferentClient();
+        Long clientId = 123456L;
+
+        // WHEN
+        when(clientRepository.findById(clientId)).thenReturn(Optional.of(otherClient));
+
+        // ASSERT
+        assertThrows(ApiRequestException.class, () -> clientServiceImp.updateClient(loggedUser, clientRequestDTO, clientId));
+    }
+
+    @Test
+    void testDeleteClient(){
+        // GIVEN
+        var user = TestUtil.createUser();
+        var loggedUser = new CustomUserDetails(user);
+        var clientRequestDTO = TestUtil.createClientRequestDTO();
+        var clientList = TestUtil.creatClientList(clientRequestDTO, user);
+        Long clientId = 123456L;
+
+        // WHEN
+        when(clientRepository.findAll()).thenReturn(clientList);
+
+        // THEN
+        clientServiceImp.deleteClient(loggedUser,clientId);
+
     }
 }

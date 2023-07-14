@@ -41,6 +41,7 @@ public class TestUtil {
 
         return user;
     }
+
     public static User newCreateUser() {
         User user = new User();
 //        user.setId(1234L);
@@ -54,6 +55,7 @@ public class TestUtil {
 
         return user;
     }
+
     public static User createUpdatedUser() {
         User user = new User();
         user.setId(1234L);
@@ -181,4 +183,20 @@ public class TestUtil {
         clients.add(newClient);
         return clients;
     }
+
+    public static Client createDifferentClient() {
+        Client differentClient = new Client();
+        differentClient.setId(2222L);
+        differentClient.setFirstName("fname");
+        differentClient.setLastName("lname");
+        differentClient.setPhone("990909");
+        differentClient.setEmail("dfcl@examle.com");
+        differentClient.setIdNumber(222231234L);
+        User user = TestUtil.createUser();
+        differentClient.setUserId(user);
+
+        return differentClient;
+
+    }
+
 }
