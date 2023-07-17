@@ -3,13 +3,14 @@ package com.laywerapi.laywerapi.shared;
 import com.laywerapi.laywerapi.dto.request.ClientRequestDTO;
 import com.laywerapi.laywerapi.dto.request.UserUpdateRequestDTO;
 import com.laywerapi.laywerapi.entity.Client;
-import com.laywerapi.laywerapi.entity.UserT;
+import com.laywerapi.laywerapi.entity.User;
+import com.laywerapi.laywerapi.entity.User;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Component;
 
 @Component
 public class Utils {
-    public UserT checkingForUpdatesUser(UserT user, UserUpdateRequestDTO userUpdateRequestDTO) {
+    public User checkingForUpdatesUser(User user, UserUpdateRequestDTO userUpdateRequestDTO) {
         if (StringUtils.isNoneBlank(userUpdateRequestDTO.getFirstName())) {
             user.setFirstName(userUpdateRequestDTO.getFirstName());
         }

@@ -5,7 +5,7 @@ import com.laywerapi.laywerapi.dto.request.UserUpdateRequestDTO;
 import com.laywerapi.laywerapi.dto.response.UserResponseDTO;
 import com.laywerapi.laywerapi.dto.response.UserUpdatedResponseDTO;
 import com.laywerapi.laywerapi.entity.User;
-import com.laywerapi.laywerapi.entity.UserT;
+import com.laywerapi.laywerapi.entity.User;
 
 import java.util.List;
 

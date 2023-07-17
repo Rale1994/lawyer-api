@@ -4,7 +4,7 @@ import com.laywerapi.laywerapi.dto.request.ClientRequestDTO;
 import com.laywerapi.laywerapi.dto.response.ClientResponseDTO;
 import com.laywerapi.laywerapi.entity.Client;
 import com.laywerapi.laywerapi.entity.User;
-import com.laywerapi.laywerapi.entity.UserT;
+import com.laywerapi.laywerapi.entity.User;
 import com.laywerapi.laywerapi.exception.ApiRequestException;
 import com.laywerapi.laywerapi.repositories.ClientRepository;
 import com.laywerapi.laywerapi.repositories.UserRepository;
@@ -44,11 +44,11 @@ public class ClientServiceImpl implements ClientService {
                 }
             }
         }
-        Optional<UserT> userOptional = userRepository.findById(loggedUser.getId());
+        Optional<User> userOptional = userRepository.findById(loggedUser.getId());
         if (userOptional.isEmpty()) {
             throw new ApiRequestException("Wrong login credential!");
         }
-        UserT user = userOptional.get();
+        User user = userOptional.get();
         Client client = new Client(clientRequestDTO, user);
         Client savedClient = clientRepository.save(client);
         return new ClientResponseDTO(savedClient);

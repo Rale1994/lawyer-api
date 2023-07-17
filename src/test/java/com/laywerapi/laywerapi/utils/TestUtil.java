@@ -7,7 +7,7 @@ import com.laywerapi.laywerapi.dto.response.ClientResponseDTO;
 import com.laywerapi.laywerapi.dto.response.UserUpdatedResponseDTO;
 import com.laywerapi.laywerapi.entity.Client;
 import com.laywerapi.laywerapi.entity.User;
-import com.laywerapi.laywerapi.entity.UserT;
+import com.laywerapi.laywerapi.entity.User;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -27,8 +27,8 @@ public class TestUtil {
         return userAddRequestDTO;
     }
 
-    public static UserT createUser() {
-        UserT user = new UserT();
+    public static User createUser() {
+        User user = new User();
         user.setId(1234L);
         user.setFirstName("FIRSTNAME");
         user.setLastName("LASTNAME");
@@ -41,8 +41,8 @@ public class TestUtil {
         return user;
     }
 
-    public static UserT newCreateUser() {
-        UserT user = new UserT();
+    public static User newCreateUser() {
+        User user = new User();
 //        user.setId(1234L);
         user.setFirstName("FIRSTNAME");
         user.setLastName("LASTNAME");
@@ -55,8 +55,8 @@ public class TestUtil {
         return user;
     }
 
-    public static UserT createUpdatedUser() {
-        UserT user = new UserT();
+    public static User createUpdatedUser() {
+        User user = new User();
         user.setId(1234L);
         user.setFirstName("FirstNameUpd");
         user.setLastName("LastNameUp");
@@ -92,8 +92,8 @@ public class TestUtil {
         return userUpdatedResponseDTO;
     }
 
-    public static List<UserT> createUserList() {
-        List<UserT> users = new ArrayList<>();
+    public static List<User> createUserList() {
+        List<User> users = new ArrayList<>();
         users.add(TestUtil.createUser());
         return users;
     }
@@ -109,7 +109,7 @@ public class TestUtil {
         return clientRequestDTO;
     }
 
-    public static Client createClient(ClientRequestDTO clientRequestDTO, UserT user) {
+    public static Client createClient(ClientRequestDTO clientRequestDTO, User user) {
         Client client = new Client();
         client.setId(12345L);
         client.setFirstName(clientRequestDTO.getFirstName().toUpperCase());
@@ -122,7 +122,7 @@ public class TestUtil {
         return client;
     }
 
-    public static List<Client> creatClientList(ClientRequestDTO clientRequestDTO, UserT user) {
+    public static List<Client> creatClientList(ClientRequestDTO clientRequestDTO, User user) {
         List<Client> clients = new ArrayList<>();
         clients.add(TestUtil.createClient(clientRequestDTO, user));
         return clients;
@@ -176,7 +176,7 @@ public class TestUtil {
         newClient.setPhone(client.getPhone());
         newClient.setEmail(client.getEmail());
         newClient.setIdNumber(client.getIdNumber());
-        UserT user = TestUtil.createUser();
+        User user = TestUtil.createUser();
         user.setId(loggedUser.getId());
         newClient.setUserId(user);
         clients.add(newClient);
@@ -191,7 +191,7 @@ public class TestUtil {
         differentClient.setPhone("990909");
         differentClient.setEmail("dfcl@examle.com");
         differentClient.setIdNumber(222231234L);
-        UserT user = TestUtil.createUser();
+        User user = TestUtil.createUser();
         differentClient.setUserId(user);
 
         return differentClient;

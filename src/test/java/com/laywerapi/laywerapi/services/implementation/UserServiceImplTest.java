@@ -4,7 +4,7 @@ import com.laywerapi.laywerapi.dto.request.UserAddRequestDTO;
 import com.laywerapi.laywerapi.dto.response.UserResponseDTO;
 import com.laywerapi.laywerapi.dto.response.UserUpdatedResponseDTO;
 import com.laywerapi.laywerapi.entity.User;
-import com.laywerapi.laywerapi.entity.UserT;
+import com.laywerapi.laywerapi.entity.User;
 import com.laywerapi.laywerapi.exception.ApiRequestException;
 import com.laywerapi.laywerapi.repositories.UserRepository;
 import com.laywerapi.laywerapi.shared.Utils;
@@ -39,7 +39,7 @@ class UserServiceImplTest {
     void testCreateUserAccount() throws Exception {
         // GIVEN
         UserAddRequestDTO userAddRequestDTO = TestUtil.createUserAddRequestDTO();
-        UserT user = TestUtil.newCreateUser();
+        User user = TestUtil.newCreateUser();
 
         // WHEN
         when(userRepository.findByEmail(userAddRequestDTO.getEmail())).thenReturn(Optional.empty());
@@ -59,7 +59,7 @@ class UserServiceImplTest {
     void testCreateUserAccountWithEmailWhichAlreadyExist() {
         // GIVEN
         var userAddRequestDTO = TestUtil.createUserAddRequestDTO();
-        var user = new UserT(userAddRequestDTO);
+        var user = new User(userAddRequestDTO);
         user.setId(12346L);
 
         // WHEN
@@ -73,7 +73,7 @@ class UserServiceImplTest {
     void testCreateUserAccountWithUsernameWhichAlreadyExist() {
         // GIVEN
         var userAddRequestDTO = TestUtil.createUserAddRequestDTO();
-        var user = new UserT(userAddRequestDTO);
+        var user = new User(userAddRequestDTO);
         user.setId(12346L);
 
         // WHEN
@@ -88,7 +88,7 @@ class UserServiceImplTest {
         // GIVEN
         var userAddRequestDTO = TestUtil.createUserAddRequestDTO();
         userAddRequestDTO.setEmail(null);
-        var user = new UserT(userAddRequestDTO);
+        var user = new User(userAddRequestDTO);
         user.setId(12346L);
 
         // WHEN
@@ -102,18 +102,18 @@ class UserServiceImplTest {
     void testUpdateLawyerAccount() throws Exception {
         // GIVEN
         var user = TestUtil.createUser();
-        var loggedUser = new User(user);
+//        var loggedUser = new User(user);
         var userUpdateRequestDTO = TestUtil.createUserUpdateRequestDTO();
         var updatedUser = TestUtil.createUpdatedUser();
 
         // WHEN
-        when(userRepository.findByUsername(loggedUser.getUsername())).thenReturn(Optional.of(user));
+        when(userRepository.findByUsername(user.getUsername())).thenReturn(Optional.of(user));
         when(utils.checkingForUpdatesUser(user, userUpdateRequestDTO)).thenReturn(updatedUser);
         when(userRepository.save(updatedUser)).thenReturn(updatedUser);
 
 
         // ACTION
-        UserUpdatedResponseDTO userUpdatedResponseDTO = userServiceImpl.findUserForUpdate(loggedUser, userUpdateRequestDTO);
+        UserUpdatedResponseDTO userUpdatedResponseDTO = userServiceImpl.findUserForUpdate(user, userUpdateRequestDTO);
 
         // ASSERT
         assertNotNull(userUpdatedResponseDTO);
@@ -124,21 +124,21 @@ class UserServiceImplTest {
     void testUpdateLawyerAccountIfUsernameDoesNotExist() {
         // GIVEN
         var user = TestUtil.createUser();
-        var loggedUser = new User(user);
+//        var loggedUser = new User(user);
         var userUpdateRequestDTO = TestUtil.createUserUpdateRequestDTO();
         var updatedUser = TestUtil.createUpdatedUser();
 
         // WHEN
-        when(userRepository.findByUsername(loggedUser.getUsername())).thenReturn(Optional.empty());
+        when(userRepository.findByUsername(user.getUsername())).thenReturn(Optional.empty());
 
         // THEN
-        assertThrows(ApiRequestException.class, () -> userServiceImpl.findUserForUpdate(loggedUser, userUpdateRequestDTO));
+        assertThrows(ApiRequestException.class, () -> userServiceImpl.findUserForUpdate(user, userUpdateRequestDTO));
     }
 
     @Test
     void testGettingAllLawyerAccounts() {
         // GIVEN
-        List<UserT> users = TestUtil.createUserList();
+        List<User> users = TestUtil.createUserList();
 
         // WHEN
         when(userRepository.findAll()).thenReturn(users);

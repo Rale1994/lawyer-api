@@ -1,7 +1,7 @@
 package com.laywerapi.laywerapi.services.implementation;
 
 //import com.laywerapi.laywerapi.entity.CustomUserDetails;
-import com.laywerapi.laywerapi.entity.UserT;
+import com.laywerapi.laywerapi.entity.User;
 import com.laywerapi.laywerapi.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -23,11 +23,11 @@ import java.util.Optional;
 //    @Override
 //    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 //
-//        Optional<UserT> userEntityOp = userRepository.findByUsername(username);
+//        Optional<User> userEntityOp = userRepository.findByUsername(username);
 //
 //        if (!userEntityOp.isPresent()) throw new UsernameNotFoundException(username);
 //
-//        UserT user = userEntityOp.get();
+//        User user = userEntityOp.get();
 //        return new CustomUserDetails(user);
 //    }
 
