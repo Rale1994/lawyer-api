@@ -24,6 +24,7 @@ public class User {
     private String username;
     private String password;
     private String role;
+    private boolean isEnable = false;
     @OneToMany(mappedBy = "userId", cascade = CascadeType.ALL)
     private List<Client> clients;
 
