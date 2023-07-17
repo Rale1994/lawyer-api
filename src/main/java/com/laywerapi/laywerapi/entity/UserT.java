@@ -14,12 +14,12 @@ import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 
-@Entity(name = "users")
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 @EqualsAndHashCode
-public class User implements UserDetails {
+public class UserT implements UserDetails {
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
@@ -35,7 +35,7 @@ public class User implements UserDetails {
     @OneToMany(mappedBy = "userId", cascade = CascadeType.ALL)
     private List<Client> clients;
 
-    public User(UserAddRequestDTO userAddRequestDTO) {
+    public UserT(UserAddRequestDTO userAddRequestDTO) {
         this.firstName = userAddRequestDTO.getFirstName();
         this.lastName = userAddRequestDTO.getLastName();
         this.email = userAddRequestDTO.getEmail();
@@ -49,16 +49,6 @@ public class User implements UserDetails {
         SimpleGrantedAuthority authority =
                 new SimpleGrantedAuthority(role);
         return Collections.singletonList(authority);
-    }
-
-    @Override
-    public String getPassword() {
-        return password;
-    }
-
-    @Override
-    public String getUsername() {
-        return username;
     }
 
     @Override

@@ -22,9 +22,9 @@ public class Client {
     private String phone;
     @ManyToOne
     @JoinColumn(name = "userId")
-    private User userId;
+    private UserT userId;
 
-    public Client(ClientRequestDTO clientRequestDTO, User user) {
+    public Client(ClientRequestDTO clientRequestDTO, UserT user) {
         this.firstName = clientRequestDTO.getFirstName().toUpperCase();
         this.lastName = clientRequestDTO.getLastName().toUpperCase();
         this.idNumber=clientRequestDTO.getIdNumber();

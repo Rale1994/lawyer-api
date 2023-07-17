@@ -2,7 +2,7 @@ package com.laywerapi.laywerapi.services.implementation;
 
 import com.laywerapi.laywerapi.dto.response.ClientResponseDTO;
 import com.laywerapi.laywerapi.entity.Client;
-import com.laywerapi.laywerapi.entity.CustomUserDetails;
+import com.laywerapi.laywerapi.entity.User;
 import com.laywerapi.laywerapi.exception.ApiRequestException;
 import com.laywerapi.laywerapi.repositories.ClientRepository;
 import com.laywerapi.laywerapi.repositories.UserRepository;
@@ -39,7 +39,7 @@ class ClientServiceImplTest {
     void testAddingClient() throws Exception {
         // GIVEN
         var user = TestUtil.createUser();
-        var loggedUser = new CustomUserDetails(user);
+        var loggedUser = new User(user);
         var clientRequestDTO = TestUtil.createClientRequestDTO();
         var client = new Client(clientRequestDTO, user);
 
@@ -59,7 +59,7 @@ class ClientServiceImplTest {
     void testTryToAddClientWhoAlreadyExist() {
         // GIVEN
         var user = TestUtil.createUser();
-        var loggedUser = new CustomUserDetails(user);
+        var loggedUser = new User(user);
         var clientRequestDTO = TestUtil.createClientRequestDTO();
         var client = TestUtil.createClient(clientRequestDTO, user);
         var clientList = TestUtil.creatSameClientList(client, loggedUser);
@@ -75,7 +75,7 @@ class ClientServiceImplTest {
     void testGettingAllClients() {
         // GIVEN
         var user = TestUtil.createUser();
-        var loggedUser = new CustomUserDetails(user);
+        var loggedUser = new User(user);
         var clientRequestDTO = TestUtil.createClientRequestDTO();
         var clientList = TestUtil.creatClientList(clientRequestDTO, user);
 
@@ -93,7 +93,7 @@ class ClientServiceImplTest {
     void testGetOneClientByFirstName() {
         // GIVEN
         var user = TestUtil.createUser();
-        var loggedUser = new CustomUserDetails(user);
+        var loggedUser = new User(user);
         var firstName = "FirstName";
         var clientList = TestUtil.clientsList();
         var clientResponseDTOsList = TestUtil.clientResponseDTOSList(clientList);
@@ -112,7 +112,7 @@ class ClientServiceImplTest {
     void testCantGetClientByFirstName() {
         // GIVEN
         var user = TestUtil.createUser();
-        var loggedUser = new CustomUserDetails(user);
+        var loggedUser = new User(user);
         var firstName = "FirstName";
         var clientList = TestUtil.clientsList();
         var clientResponseDTOsList = TestUtil.clientResponseDTOSList(clientList);
@@ -128,7 +128,7 @@ class ClientServiceImplTest {
     void testUpdateClientInformation() {
         // GIVEN
         var user = TestUtil.createUser();
-        var loggedUser = new CustomUserDetails(user);
+        var loggedUser = new User(user);
         var clientRequestDTO = TestUtil.createClientRequestDTO();
         var client = new Client(clientRequestDTO, user);
         var updatedClient = TestUtil.createUpdatedClient(clientRequestDTO);
@@ -151,7 +151,7 @@ class ClientServiceImplTest {
     void testTryToUpdateClientWhoDoesNotExist() {
         // GIVEN
         var user = TestUtil.createUser();
-        var loggedUser = new CustomUserDetails(user);
+        var loggedUser = new User(user);
         var clientRequestDTO = TestUtil.createClientRequestDTO();
         var client = new Client(clientRequestDTO, user);
         var updatedClient = TestUtil.createUpdatedClient(clientRequestDTO);
@@ -169,7 +169,7 @@ class ClientServiceImplTest {
         // GIVEN
         var user = TestUtil.createUser();
         user.setId(1111L);
-        var loggedUser = new CustomUserDetails(user);
+        var loggedUser = new User(user);
         var clientRequestDTO = TestUtil.createClientRequestDTO();
         var client = new Client(clientRequestDTO, user);
         var otherClient=TestUtil.createDifferentClient();
@@ -186,7 +186,7 @@ class ClientServiceImplTest {
     void testDeleteClient(){
         // GIVEN
         var user = TestUtil.createUser();
-        var loggedUser = new CustomUserDetails(user);
+        var loggedUser = new User(user);
         var clientRequestDTO = TestUtil.createClientRequestDTO();
         var clientList = TestUtil.creatClientList(clientRequestDTO, user);
         Long clientId = 123456L;

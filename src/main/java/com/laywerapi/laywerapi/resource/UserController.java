@@ -4,7 +4,8 @@ import com.laywerapi.laywerapi.dto.request.UserAddRequestDTO;
 import com.laywerapi.laywerapi.dto.request.UserUpdateRequestDTO;
 import com.laywerapi.laywerapi.dto.response.UserResponseDTO;
 import com.laywerapi.laywerapi.dto.response.UserUpdatedResponseDTO;
-import com.laywerapi.laywerapi.entity.CustomUserDetails;
+import com.laywerapi.laywerapi.entity.User;
+import com.laywerapi.laywerapi.entity.UserT;
 import com.laywerapi.laywerapi.services.UserService;
 import io.swagger.annotations.Api;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -29,9 +30,10 @@ public class UserController {
         return "Hello";
     }
 
+
     @PreAuthorize("hasRole('ROLE_USER')")
     @PutMapping("/update")
-    public UserUpdatedResponseDTO update(@AuthenticationPrincipal CustomUserDetails loggedUser, @RequestBody UserUpdateRequestDTO userUpdateRequestDTO) throws Exception {
+    public UserUpdatedResponseDTO update(@AuthenticationPrincipal User loggedUser, @RequestBody UserUpdateRequestDTO userUpdateRequestDTO) throws Exception {
         return userService.findUserForUpdate(loggedUser, userUpdateRequestDTO);
     }
 

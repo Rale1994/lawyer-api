@@ -1,6 +1,6 @@
 package com.laywerapi.laywerapi.dto.response;
 
-import com.laywerapi.laywerapi.entity.User;
+import com.laywerapi.laywerapi.entity.UserT;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -21,7 +21,7 @@ public class UserUpdatedResponseDTO {
     @NotBlank(message = "Phone number is required")
     private String phone;
 
-    public UserUpdatedResponseDTO(User user) {
+    public UserUpdatedResponseDTO(UserT user) {
         this.firstName = user.getFirstName();
         this.lastName = user.getLastName();
         this.email = user.getEmail();

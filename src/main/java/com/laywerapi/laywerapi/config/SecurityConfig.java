@@ -1,6 +1,8 @@
 package com.laywerapi.laywerapi.config;
 
-import com.laywerapi.laywerapi.services.implementation.UserDetailServiceImpl;
+//import com.laywerapi.laywerapi.services.implementation.UserDetailServiceImpl;
+import com.laywerapi.laywerapi.services.implementation.UserServiceImpl;
+import lombok.AllArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.Customizer;
@@ -15,13 +17,10 @@ import org.springframework.security.web.SecurityFilterChain;
 @Configuration
 @EnableWebSecurity
 @EnableMethodSecurity
+@AllArgsConstructor
 public class SecurityConfig {
 
-    private final UserDetailServiceImpl userDetailServiceImplementation;
-
-    public SecurityConfig(UserDetailServiceImpl userDetailServiceImplementation) {
-        this.userDetailServiceImplementation = userDetailServiceImplementation;
-    }
+    private final UserServiceImpl userServiceImpl;
 
 
     @Bean
@@ -30,10 +29,11 @@ public class SecurityConfig {
                 .csrf().disable()
                 .authorizeRequests(auth -> auth
                         .antMatchers("api/v1/users/**").permitAll()
+                        .antMatchers("/api/v1/registration").permitAll()
                         .mvcMatchers("api/v1/users/update").hasRole("USER")
                         .mvcMatchers("api/v1/clients/**").hasRole("USER")
                         .mvcMatchers("api/v1/users/all").hasRole("ADMIN"))
-                .userDetailsService(userDetailServiceImplementation)
+                .userDetailsService(userServiceImpl)
                 .headers(headers -> headers.frameOptions().sameOrigin())
                 .httpBasic(Customizer.withDefaults())
                 .build();

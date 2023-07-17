@@ -1,6 +1,6 @@
 package com.laywerapi.laywerapi.dto.response;
 
-import com.laywerapi.laywerapi.entity.User;
+import com.laywerapi.laywerapi.entity.UserT;
 import lombok.Data;
 
 import javax.validation.constraints.NotBlank;
@@ -19,7 +19,7 @@ public class UserResponseDTO {
     @NotBlank(message = "Phone number is required")
     private String phone;
 
-    public UserResponseDTO(User user) {
+    public UserResponseDTO(UserT user) {
         this.firstName = user.getFirstName();
         this.lastName = user.getLastName();
         this.email = user.getEmail();

@@ -3,8 +3,8 @@ package com.laywerapi.laywerapi.services.implementation;
 import com.laywerapi.laywerapi.dto.request.UserAddRequestDTO;
 import com.laywerapi.laywerapi.dto.response.UserResponseDTO;
 import com.laywerapi.laywerapi.dto.response.UserUpdatedResponseDTO;
-import com.laywerapi.laywerapi.entity.CustomUserDetails;
 import com.laywerapi.laywerapi.entity.User;
+import com.laywerapi.laywerapi.entity.UserT;
 import com.laywerapi.laywerapi.exception.ApiRequestException;
 import com.laywerapi.laywerapi.repositories.UserRepository;
 import com.laywerapi.laywerapi.shared.Utils;
@@ -39,7 +39,7 @@ class UserServiceImplTest {
     void testCreateUserAccount() throws Exception {
         // GIVEN
         UserAddRequestDTO userAddRequestDTO = TestUtil.createUserAddRequestDTO();
-        User user = TestUtil.newCreateUser();
+        UserT user = TestUtil.newCreateUser();
 
         // WHEN
         when(userRepository.findByEmail(userAddRequestDTO.getEmail())).thenReturn(Optional.empty());
@@ -59,7 +59,7 @@ class UserServiceImplTest {
     void testCreateUserAccountWithEmailWhichAlreadyExist() {
         // GIVEN
         var userAddRequestDTO = TestUtil.createUserAddRequestDTO();
-        var user = new User(userAddRequestDTO);
+        var user = new UserT(userAddRequestDTO);
         user.setId(12346L);
 
         // WHEN
@@ -73,7 +73,7 @@ class UserServiceImplTest {
     void testCreateUserAccountWithUsernameWhichAlreadyExist() {
         // GIVEN
         var userAddRequestDTO = TestUtil.createUserAddRequestDTO();
-        var user = new User(userAddRequestDTO);
+        var user = new UserT(userAddRequestDTO);
         user.setId(12346L);
 
         // WHEN
@@ -88,7 +88,7 @@ class UserServiceImplTest {
         // GIVEN
         var userAddRequestDTO = TestUtil.createUserAddRequestDTO();
         userAddRequestDTO.setEmail(null);
-        var user = new User(userAddRequestDTO);
+        var user = new UserT(userAddRequestDTO);
         user.setId(12346L);
 
         // WHEN
@@ -102,7 +102,7 @@ class UserServiceImplTest {
     void testUpdateLawyerAccount() throws Exception {
         // GIVEN
         var user = TestUtil.createUser();
-        var loggedUser = new CustomUserDetails(user);
+        var loggedUser = new User(user);
         var userUpdateRequestDTO = TestUtil.createUserUpdateRequestDTO();
         var updatedUser = TestUtil.createUpdatedUser();
 
@@ -124,7 +124,7 @@ class UserServiceImplTest {
     void testUpdateLawyerAccountIfUsernameDoesNotExist() {
         // GIVEN
         var user = TestUtil.createUser();
-        var loggedUser = new CustomUserDetails(user);
+        var loggedUser = new User(user);
         var userUpdateRequestDTO = TestUtil.createUserUpdateRequestDTO();
         var updatedUser = TestUtil.createUpdatedUser();
 
@@ -138,7 +138,7 @@ class UserServiceImplTest {
     @Test
     void testGettingAllLawyerAccounts() {
         // GIVEN
-        List<User> users = TestUtil.createUserList();
+        List<UserT> users = TestUtil.createUserList();
 
         // WHEN
         when(userRepository.findAll()).thenReturn(users);
