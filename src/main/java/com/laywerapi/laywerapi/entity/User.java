@@ -24,6 +24,7 @@ public class User {
     private String username;
     private String password;
     private String role;
+    private boolean isEnabled = false;
     @OneToMany(mappedBy = "userId", cascade = CascadeType.ALL)
     private List<Client> clients;
 
@@ -33,7 +34,7 @@ public class User {
         this.email = userAddRequestDTO.getEmail();
         this.username = userAddRequestDTO.getUsername();
         this.phone = userAddRequestDTO.getPhone();
-        this.role = "ROLE_USER";
+        this.role = "USER";
     }
 
 }

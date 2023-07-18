@@ -3,8 +3,8 @@ package com.laywerapi.laywerapi.services.implementation;
 import com.laywerapi.laywerapi.dto.request.ClientRequestDTO;
 import com.laywerapi.laywerapi.dto.response.ClientResponseDTO;
 import com.laywerapi.laywerapi.entity.Client;
-import com.laywerapi.laywerapi.entity.CustomUserDetails;
 import com.laywerapi.laywerapi.entity.User;
+import com.laywerapi.laywerapi.entity.UserRegistrationDetails;
 import com.laywerapi.laywerapi.exception.ApiRequestException;
 import com.laywerapi.laywerapi.repositories.ClientRepository;
 import com.laywerapi.laywerapi.repositories.UserRepository;
@@ -25,14 +25,14 @@ public class ClientServiceImpl implements ClientService {
     private final UserRepository userRepository;
     private final Utils utils;
 
-    public ClientServiceImpl(ClientRepository clientRepository, UserRepository userRepository, Utils utils) {
+    public ClientServiceImpl(ClientRepository clientRepository, UserRepository userRepository,Utils utils) {
         this.clientRepository = clientRepository;
         this.userRepository = userRepository;
         this.utils = utils;
     }
 
     @Override
-    public ClientResponseDTO addClient(CustomUserDetails loggedUser, ClientRequestDTO clientRequestDTO) throws Exception {
+    public ClientResponseDTO addClient(UserRegistrationDetails loggedUser, ClientRequestDTO clientRequestDTO) throws Exception {
         log.info("Adding client...");
         List<Client> clients = clientRepository.findByEmail(clientRequestDTO.getEmail());
         if (!clients.isEmpty()) {
@@ -55,14 +55,14 @@ public class ClientServiceImpl implements ClientService {
     }
 
     @Override
-    public List<ClientResponseDTO> allClients(CustomUserDetails loggedUser) {
+    public List<ClientResponseDTO> allClients(UserRegistrationDetails loggedUser) {
         log.info("Getting all clients...");
         List<Client> clients = (List<Client>) clientRepository.findAll();
         return clients.stream().filter(client -> Objects.equals(client.getUserId().getId(), loggedUser.getId())).map(ClientResponseDTO::new).collect(Collectors.toList());
     }
 
     @Override
-    public List<ClientResponseDTO> getOneByFirstName(CustomUserDetails loggedUser, String clientName) {
+    public List<ClientResponseDTO> getOneByFirstName(UserRegistrationDetails loggedUser, String clientName) {
         log.info("Getting one client by first name");
         List<Client> clients = (List<Client>) clientRepository.findAll();
         List<ClientResponseDTO> clientResponseDTOS = clients.stream()
@@ -79,7 +79,7 @@ public class ClientServiceImpl implements ClientService {
     }
 
     @Override
-    public ClientResponseDTO updateClient(CustomUserDetails loggedUser, ClientRequestDTO clientRequestDTO, Long clientId) {
+    public ClientResponseDTO updateClient(UserRegistrationDetails loggedUser, ClientRequestDTO clientRequestDTO, Long clientId) {
         log.info("Updating client information!");
         Optional<Client> clientOptional = clientRepository.findById(clientId);
         if (clientOptional.isEmpty()) {
@@ -98,7 +98,7 @@ public class ClientServiceImpl implements ClientService {
     }
 
     @Override
-    public void deleteClient(CustomUserDetails loggedUser, Long clientId) {
+    public void deleteClient(UserRegistrationDetails loggedUser, Long clientId) {
         log.info("Deleting client...");
         List<Client> clients = (List<Client>) clientRepository.findAll();
         clients.stream().filter(client -> Objects.equals(client.getUserId().getId(), loggedUser.getId()))

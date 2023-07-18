@@ -5,12 +5,22 @@ import com.laywerapi.laywerapi.dto.request.UserUpdateRequestDTO;
 import com.laywerapi.laywerapi.dto.response.UserResponseDTO;
 import com.laywerapi.laywerapi.dto.response.UserUpdatedResponseDTO;
 import com.laywerapi.laywerapi.entity.CustomUserDetails;
+import com.laywerapi.laywerapi.entity.User;
+import com.laywerapi.laywerapi.entity.UserRegistrationDetails;
+import com.laywerapi.laywerapi.entity.VerificationToken;
 
 import java.util.List;
 
 public interface UserService {
     UserResponseDTO createAccount(UserAddRequestDTO userAddRequestDTO) throws Exception;
-    UserUpdatedResponseDTO findUserForUpdate(CustomUserDetails loggedUser, UserUpdateRequestDTO userUpdateRequestDTO) throws Exception;
+
+    UserUpdatedResponseDTO findUserForUpdate(UserRegistrationDetails loggedUser, UserUpdateRequestDTO userUpdateRequestDTO) throws Exception;
 
     List<UserResponseDTO> findAll();
+
+    User registerUser(UserAddRequestDTO userAddRequestDTO);
+
+    void saveUserVerificationToken(User user, String verificationToken);
+
+    String validateToken(String verificationToken);
 }

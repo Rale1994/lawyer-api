@@ -8,6 +8,7 @@ import com.laywerapi.laywerapi.dto.response.UserUpdatedResponseDTO;
 import com.laywerapi.laywerapi.entity.Client;
 import com.laywerapi.laywerapi.entity.CustomUserDetails;
 import com.laywerapi.laywerapi.entity.User;
+import com.laywerapi.laywerapi.entity.UserRegistrationDetails;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
@@ -169,6 +170,21 @@ public class TestUtil {
     }
 
     public static List<Client> creatSameClientList(Client client, CustomUserDetails loggedUser) {
+        List<Client> clients = new ArrayList<>();
+        Client newClient = new Client();
+        newClient.setId(client.getId());
+        newClient.setFirstName(client.getFirstName());
+        newClient.setLastName(client.getLastName());
+        newClient.setPhone(client.getPhone());
+        newClient.setEmail(client.getEmail());
+        newClient.setIdNumber(client.getIdNumber());
+        User user = TestUtil.createUser();
+        user.setId(loggedUser.getId());
+        newClient.setUserId(user);
+        clients.add(newClient);
+        return clients;
+    }
+    public static List<Client> creatSameClientListNew(Client client, UserRegistrationDetails loggedUser) {
         List<Client> clients = new ArrayList<>();
         Client newClient = new Client();
         newClient.setId(client.getId());

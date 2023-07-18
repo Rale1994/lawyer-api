@@ -4,7 +4,9 @@ package com.laywerapi.laywerapi.resource;
 import com.laywerapi.laywerapi.dto.request.ClientRequestDTO;
 import com.laywerapi.laywerapi.dto.response.ClientResponseDTO;
 import com.laywerapi.laywerapi.entity.CustomUserDetails;
+import com.laywerapi.laywerapi.entity.UserRegistrationDetails;
 import com.laywerapi.laywerapi.services.ClientService;
+import com.laywerapi.laywerapi.services.implementation.UserRegistrationDetailsImpl;
 import io.swagger.annotations.Api;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -24,33 +26,33 @@ public class ClientController {
     }
 
 
-    @PreAuthorize("hasRole('ROLE_USER')")
+//    @PreAuthorize("hasRole('USER')")
     @PostMapping("/add")
-    public ClientResponseDTO addClient(@AuthenticationPrincipal CustomUserDetails loggedUser, @RequestBody ClientRequestDTO clientRequestDTO) throws Exception {
+    public ClientResponseDTO addClient(@AuthenticationPrincipal UserRegistrationDetails loggedUser, @RequestBody ClientRequestDTO clientRequestDTO) throws Exception {
         return clientService.addClient(loggedUser, clientRequestDTO);
     }
 
-    @PreAuthorize("hasRole('ROLE_USER')")
+//    @PreAuthorize("hasRole('USER')")
     @GetMapping("/all")
-    public List<ClientResponseDTO> allClients(@AuthenticationPrincipal CustomUserDetails loggedUser) {
+    public List<ClientResponseDTO> allClients(@AuthenticationPrincipal UserRegistrationDetails loggedUser) {
         return clientService.allClients(loggedUser);
     }
 
-    @PreAuthorize("hasRole('ROLE_USER')")
+//    @PreAuthorize("hasRole('USER')")
     @GetMapping("/{clientName}")
-    public List<ClientResponseDTO> getOneByFirstName(@AuthenticationPrincipal CustomUserDetails loggedUser, @PathVariable String clientName) {
+    public List<ClientResponseDTO> getOneByFirstName(@AuthenticationPrincipal UserRegistrationDetails loggedUser, @PathVariable String clientName) {
         return clientService.getOneByFirstName(loggedUser, clientName);
     }
 
-    @PreAuthorize("hasRole('ROLE_USER')")
+//    @PreAuthorize("hasRole('USER')")
     @PutMapping("/update/{clientId}")
-    public ClientResponseDTO updateClient(@AuthenticationPrincipal CustomUserDetails loggedUser, @RequestBody ClientRequestDTO clientRequestDTO, @PathVariable Long clientId) {
+    public ClientResponseDTO updateClient(@AuthenticationPrincipal UserRegistrationDetails loggedUser, @RequestBody ClientRequestDTO clientRequestDTO, @PathVariable Long clientId) {
         return clientService.updateClient(loggedUser, clientRequestDTO, clientId);
     }
 
-    @PreAuthorize("hasRole('ROLE_USER')")
+//    @PreAuthorize("hasRole('USER')")
     @DeleteMapping("/{clientId}")
-    public ResponseEntity<?> deleteClient(@AuthenticationPrincipal CustomUserDetails loggedUser, @PathVariable Long clientId) {
+    public ResponseEntity<?> deleteClient(@AuthenticationPrincipal UserRegistrationDetails loggedUser, @PathVariable Long clientId) {
         clientService.deleteClient(loggedUser, clientId);
         return ResponseEntity.ok().build();
     }

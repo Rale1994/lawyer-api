@@ -1,19 +1,37 @@
 package com.laywerapi.laywerapi.entity;
 
+import lombok.Data;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
+import java.util.Arrays;
 import java.util.Collection;
-import java.util.Collections;
+import java.util.List;
+import java.util.stream.Collectors;
 
-public class CustomUserDetails implements UserDetails {
+@Data
+public class UserRegistrationDetails implements UserDetails {
     private User user;
+    private String username;
+    private String password;
+    private boolean isEnabled = false;
+    private List<GrantedAuthority> authorities;
 
+    public UserRegistrationDetails() {
+    }
 
-    public CustomUserDetails(User user) {
+    public UserRegistrationDetails(User user) {
+        this.username = user.getEmail();
+        this.password = user.getPassword();
+        this.isEnabled = user.isEnabled();
+        this.authorities = Arrays.stream(user.getRole()
+                        .split(","))
+                .map(SimpleGrantedAuthority::new)
+                .collect(Collectors.toList());
         this.user = user;
     }
+
 
     public Long getId() {
         return user.getId();
@@ -21,17 +39,17 @@ public class CustomUserDetails implements UserDetails {
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return Collections.singleton(new SimpleGrantedAuthority(user.getRole()));
+        return authorities;
     }
 
     @Override
     public String getPassword() {
-        return user.getPassword();
+        return password;
     }
 
     @Override
     public String getUsername() {
-        return user.getUsername();
+        return username;
     }
 
     @Override
@@ -51,6 +69,6 @@ public class CustomUserDetails implements UserDetails {
 
     @Override
     public boolean isEnabled() {
-        return true;
+        return isEnabled;
     }
 }

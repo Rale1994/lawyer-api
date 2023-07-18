@@ -4,16 +4,19 @@ import com.laywerapi.laywerapi.dto.request.UserAddRequestDTO;
 import com.laywerapi.laywerapi.dto.request.UserUpdateRequestDTO;
 import com.laywerapi.laywerapi.dto.response.UserResponseDTO;
 import com.laywerapi.laywerapi.dto.response.UserUpdatedResponseDTO;
-import com.laywerapi.laywerapi.entity.CustomUserDetails;
 import com.laywerapi.laywerapi.entity.User;
+import com.laywerapi.laywerapi.entity.UserRegistrationDetails;
+import com.laywerapi.laywerapi.entity.VerificationToken;
 import com.laywerapi.laywerapi.exception.ApiRequestException;
 import com.laywerapi.laywerapi.repositories.UserRepository;
+import com.laywerapi.laywerapi.repositories.VerificationTokenRepository;
 import com.laywerapi.laywerapi.services.UserService;
 import com.laywerapi.laywerapi.shared.Utils;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.util.Calendar;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -22,14 +25,17 @@ import java.util.stream.Collectors;
 @Slf4j
 public class UserServiceImpl implements UserService {
     private final UserRepository userRepository;
+    private final VerificationTokenRepository verificationTokenRepository;
     private final PasswordEncoder passwordEncoder;
     private final Utils utils;
 
-    public UserServiceImpl(UserRepository userRepository, PasswordEncoder passwordEncoder, Utils utils) {
+    public UserServiceImpl(UserRepository userRepository, VerificationTokenRepository verificationTokenRepository, PasswordEncoder passwordEncoder, Utils utils) {
         this.userRepository = userRepository;
+        this.verificationTokenRepository = verificationTokenRepository;
         this.passwordEncoder = passwordEncoder;
         this.utils = utils;
     }
+
 
     @Override
     public UserResponseDTO createAccount(UserAddRequestDTO userAddRequestDTO) throws Exception {
@@ -46,7 +52,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public UserUpdatedResponseDTO findUserForUpdate(CustomUserDetails loggedUser, UserUpdateRequestDTO userUpdateRequestDTO) throws Exception {
+    public UserUpdatedResponseDTO findUserForUpdate(UserRegistrationDetails loggedUser, UserUpdateRequestDTO userUpdateRequestDTO) throws Exception {
         log.info("Updating account...");
         Optional<User> optionalUser = userRepository.findByUsername(loggedUser.getUsername());
         if (optionalUser.isEmpty()) {
@@ -58,7 +64,6 @@ public class UserServiceImpl implements UserService {
         userRepository.save(userForUpdate);
 
         return new UserUpdatedResponseDTO(userForUpdate);
-
     }
 
     @Override
@@ -66,5 +71,40 @@ public class UserServiceImpl implements UserService {
         log.info("Finding all users...");
         List<User> users = (List<User>) userRepository.findAll();
         return users.stream().map(UserResponseDTO::new).collect(Collectors.toList());
+    }
+
+    @Override
+    public User registerUser(UserAddRequestDTO userAddRequestDTO) {
+        Optional<User> optionalUser = userRepository.findByEmail(userAddRequestDTO.getEmail());
+        if (optionalUser.isPresent()) {
+            throw new ApiRequestException("User with email" + userAddRequestDTO + " already exists!");
+        }
+        User user = new User(userAddRequestDTO);
+        user.setPassword(passwordEncoder.encode(userAddRequestDTO.getPassword()));
+
+        return userRepository.save(user);
+    }
+
+    @Override
+    public void saveUserVerificationToken(User user, String verificationToken) {
+        VerificationToken verificationTokenNew = new VerificationToken(verificationToken, user);
+        verificationTokenRepository.save(verificationTokenNew);
+    }
+
+    @Override
+    public String validateToken(String verificationToken) {
+        VerificationToken token = verificationTokenRepository.findByToken(verificationToken);
+        if (token == null) {
+            return "Invalid verification token!";
+        }
+        User user = token.getUser();
+        Calendar calendar = Calendar.getInstance();
+        if ((token.getExpirationTime().getTime() - calendar.getTime().getTime()) <= 0) {
+            verificationTokenRepository.delete(token);
+            return "Token already expired!";
+        }
+        user.setEnabled(true);
+        userRepository.save(user);
+        return "valid";
     }
 }

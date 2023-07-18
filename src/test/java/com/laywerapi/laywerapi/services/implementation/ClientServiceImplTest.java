@@ -3,6 +3,7 @@ package com.laywerapi.laywerapi.services.implementation;
 import com.laywerapi.laywerapi.dto.response.ClientResponseDTO;
 import com.laywerapi.laywerapi.entity.Client;
 import com.laywerapi.laywerapi.entity.CustomUserDetails;
+import com.laywerapi.laywerapi.entity.UserRegistrationDetails;
 import com.laywerapi.laywerapi.exception.ApiRequestException;
 import com.laywerapi.laywerapi.repositories.ClientRepository;
 import com.laywerapi.laywerapi.repositories.UserRepository;
@@ -39,17 +40,18 @@ class ClientServiceImplTest {
     void testAddingClient() throws Exception {
         // GIVEN
         var user = TestUtil.createUser();
-        var loggedUser = new CustomUserDetails(user);
+//        var loggedUser = new CustomUserDetails(user);
+        var newLogged=new UserRegistrationDetails(user);
         var clientRequestDTO = TestUtil.createClientRequestDTO();
         var client = new Client(clientRequestDTO, user);
 
         // WHEN
         when(clientRepository.findByEmail(clientRequestDTO.getEmail())).thenReturn(List.of());
-        when(userRepository.findById(loggedUser.getId())).thenReturn(Optional.of(user));
+        when(userRepository.findById(newLogged.getId())).thenReturn(Optional.of(user));
         when(clientRepository.save(client)).thenReturn(client);
 
         // ACTION
-        ClientResponseDTO actual = clientServiceImp.addClient(loggedUser, clientRequestDTO);
+        ClientResponseDTO actual = clientServiceImp.addClient(newLogged, clientRequestDTO);
 
         // ASSERT
         assertEquals(clientRequestDTO.getEmail(), actual.getEmail());
@@ -59,23 +61,25 @@ class ClientServiceImplTest {
     void testTryToAddClientWhoAlreadyExist() {
         // GIVEN
         var user = TestUtil.createUser();
-        var loggedUser = new CustomUserDetails(user);
+       // var loggedUser = new CustomUserDetails(user);
+        var newLogged=new UserRegistrationDetails(user);
         var clientRequestDTO = TestUtil.createClientRequestDTO();
         var client = TestUtil.createClient(clientRequestDTO, user);
-        var clientList = TestUtil.creatSameClientList(client, loggedUser);
+        var clientList = TestUtil.creatSameClientListNew(client, newLogged);
 
         // WHEN
         when(clientRepository.findByEmail(clientRequestDTO.getEmail())).thenReturn(clientList);
 
         // THEN
-        assertThrows(ApiRequestException.class, () -> clientServiceImp.addClient(loggedUser, clientRequestDTO));
+        assertThrows(ApiRequestException.class, () -> clientServiceImp.addClient(newLogged, clientRequestDTO));
     }
 
     @Test
     void testGettingAllClients() {
         // GIVEN
         var user = TestUtil.createUser();
-        var loggedUser = new CustomUserDetails(user);
+//        var loggedUser = new CustomUserDetails(user);
+        var newLogged=new UserRegistrationDetails(user);
         var clientRequestDTO = TestUtil.createClientRequestDTO();
         var clientList = TestUtil.creatClientList(clientRequestDTO, user);
 
@@ -83,7 +87,7 @@ class ClientServiceImplTest {
         when(clientRepository.findAll()).thenReturn(clientList);
 
         // ACTION
-        clientServiceImp.allClients(loggedUser);
+        clientServiceImp.allClients(newLogged);
 
         // ASSERT
         assertNotNull(clientList);
@@ -93,7 +97,8 @@ class ClientServiceImplTest {
     void testGetOneClientByFirstName() {
         // GIVEN
         var user = TestUtil.createUser();
-        var loggedUser = new CustomUserDetails(user);
+//        var loggedUser = new CustomUserDetails(user);
+        var newLogged=new UserRegistrationDetails(user);
         var firstName = "FirstName";
         var clientList = TestUtil.clientsList();
         var clientResponseDTOsList = TestUtil.clientResponseDTOSList(clientList);
@@ -102,7 +107,7 @@ class ClientServiceImplTest {
         when(clientRepository.findAll()).thenReturn(clientList);
 
         // ACTION
-        clientResponseDTOsList = clientServiceImp.getOneByFirstName(loggedUser, firstName.toUpperCase());
+        clientResponseDTOsList = clientServiceImp.getOneByFirstName(newLogged, firstName.toUpperCase());
 
         // ASSERT
         assertNotNull(clientResponseDTOsList);
@@ -112,7 +117,8 @@ class ClientServiceImplTest {
     void testCantGetClientByFirstName() {
         // GIVEN
         var user = TestUtil.createUser();
-        var loggedUser = new CustomUserDetails(user);
+//        var loggedUser = new CustomUserDetails(user);
+        var newLogged=new UserRegistrationDetails(user);
         var firstName = "FirstName";
         var clientList = TestUtil.clientsList();
         var clientResponseDTOsList = TestUtil.clientResponseDTOSList(clientList);
@@ -121,14 +127,15 @@ class ClientServiceImplTest {
         when(clientRepository.findAll()).thenReturn(List.of());
 
         // ASSERT
-        assertThrows(ApiRequestException.class, () -> clientServiceImp.getOneByFirstName(loggedUser, firstName));
+        assertThrows(ApiRequestException.class, () -> clientServiceImp.getOneByFirstName(newLogged, firstName));
     }
 
     @Test
     void testUpdateClientInformation() {
         // GIVEN
         var user = TestUtil.createUser();
-        var loggedUser = new CustomUserDetails(user);
+        //var loggedUser = new CustomUserDetails(user);
+        var newLogged=new UserRegistrationDetails(user);
         var clientRequestDTO = TestUtil.createClientRequestDTO();
         var client = new Client(clientRequestDTO, user);
         var updatedClient = TestUtil.createUpdatedClient(clientRequestDTO);
@@ -140,7 +147,7 @@ class ClientServiceImplTest {
         when(clientRepository.save(updatedClient)).thenReturn(updatedClient);
 
         // ACTION
-        ClientResponseDTO actual = clientServiceImp.updateClient(loggedUser, clientRequestDTO, clientId);
+        ClientResponseDTO actual = clientServiceImp.updateClient(newLogged, clientRequestDTO, clientId);
 
         // ASSERT
         assertNotNull(actual);
@@ -151,7 +158,8 @@ class ClientServiceImplTest {
     void testTryToUpdateClientWhoDoesNotExist() {
         // GIVEN
         var user = TestUtil.createUser();
-        var loggedUser = new CustomUserDetails(user);
+//        var loggedUser = new CustomUserDetails(user);
+        var newLogged=new UserRegistrationDetails(user);
         var clientRequestDTO = TestUtil.createClientRequestDTO();
         var client = new Client(clientRequestDTO, user);
         var updatedClient = TestUtil.createUpdatedClient(clientRequestDTO);
@@ -161,7 +169,7 @@ class ClientServiceImplTest {
         when(clientRepository.findById(clientId)).thenReturn(Optional.empty());
 
         // ASSERT
-        assertThrows(ApiRequestException.class, () -> clientServiceImp.updateClient(loggedUser, clientRequestDTO, clientId));
+        assertThrows(ApiRequestException.class, () -> clientServiceImp.updateClient(newLogged, clientRequestDTO, clientId));
     }
 
     @Test
@@ -169,7 +177,8 @@ class ClientServiceImplTest {
         // GIVEN
         var user = TestUtil.createUser();
         user.setId(1111L);
-        var loggedUser = new CustomUserDetails(user);
+        //var loggedUser = new CustomUserDetails(user);
+        var newLogged=new UserRegistrationDetails(user);
         var clientRequestDTO = TestUtil.createClientRequestDTO();
         var client = new Client(clientRequestDTO, user);
         var otherClient=TestUtil.createDifferentClient();
@@ -179,14 +188,15 @@ class ClientServiceImplTest {
         when(clientRepository.findById(clientId)).thenReturn(Optional.of(otherClient));
 
         // ASSERT
-        assertThrows(ApiRequestException.class, () -> clientServiceImp.updateClient(loggedUser, clientRequestDTO, clientId));
+        assertThrows(ApiRequestException.class, () -> clientServiceImp.updateClient(newLogged, clientRequestDTO, clientId));
     }
 
     @Test
     void testDeleteClient(){
         // GIVEN
         var user = TestUtil.createUser();
-        var loggedUser = new CustomUserDetails(user);
+        //var loggedUser = new CustomUserDetails(user);
+        var newLogged=new UserRegistrationDetails(user);
         var clientRequestDTO = TestUtil.createClientRequestDTO();
         var clientList = TestUtil.creatClientList(clientRequestDTO, user);
         Long clientId = 123456L;
@@ -195,7 +205,7 @@ class ClientServiceImplTest {
         when(clientRepository.findAll()).thenReturn(clientList);
 
         // THEN
-        clientServiceImp.deleteClient(loggedUser,clientId);
+        clientServiceImp.deleteClient(newLogged,clientId);
 
     }
 }

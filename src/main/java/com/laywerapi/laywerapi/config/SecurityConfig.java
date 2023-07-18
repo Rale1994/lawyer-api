@@ -1,6 +1,7 @@
 package com.laywerapi.laywerapi.config;
 
 import com.laywerapi.laywerapi.services.implementation.UserDetailServiceImpl;
+import com.laywerapi.laywerapi.services.implementation.UserRegistrationDetailsImpl;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.Customizer;
@@ -8,7 +9,6 @@ import org.springframework.security.config.annotation.method.configuration.Enabl
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.security.crypto.password.NoOpPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 
@@ -17,27 +17,31 @@ import org.springframework.security.web.SecurityFilterChain;
 @EnableMethodSecurity
 public class SecurityConfig {
 
-    private final UserDetailServiceImpl userDetailServiceImplementation;
+    private final UserRegistrationDetailsImpl userRegistrationDetails;
 
-    public SecurityConfig(UserDetailServiceImpl userDetailServiceImplementation) {
-        this.userDetailServiceImplementation = userDetailServiceImplementation;
+    public SecurityConfig(UserRegistrationDetailsImpl userRegistrationDetails) {
+        this.userRegistrationDetails = userRegistrationDetails;
     }
 
 
     @Bean
-    SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+    public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         return http
                 .csrf().disable()
                 .authorizeRequests(auth -> auth
                         .antMatchers("api/v1/users/**").permitAll()
-                        .mvcMatchers("api/v1/users/update").hasRole("USER")
-                        .mvcMatchers("api/v1/clients/**").hasRole("USER")
-                        .mvcMatchers("api/v1/users/all").hasRole("ADMIN"))
-                .userDetailsService(userDetailServiceImplementation)
+                        .antMatchers("api/v1/registration/**").permitAll()
+                        .antMatchers("api/v1/clients/**").hasAnyAuthority("USER")
+                        .antMatchers("api/v1/users/**").hasAnyAuthority("USER")
+                        .antMatchers("api/v1/users/all").hasAnyAuthority("ADMIN"))
+                .userDetailsService(userRegistrationDetails)
                 .headers(headers -> headers.frameOptions().sameOrigin())
                 .httpBasic(Customizer.withDefaults())
+                .formLogin()
+                .and()
                 .build();
     }
+
 
     @Bean
     PasswordEncoder passwordEncoder() {
