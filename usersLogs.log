@@ -1471,3 +1471,27 @@ java.lang.NullPointerException: Cannot invoke "com.laywerapi.laywerapi.entity.Us
 2023-07-19 18:06:00.219  INFO 5472 --- [http-nio-8082-exec-8] c.l.l.s.i.ClientServiceImpl              : Adding client...
 2023-07-19 18:06:03.344  INFO 5472 --- [http-nio-8082-exec-9] c.l.l.s.i.ClientServiceImpl              : Getting all clients...
 2023-07-19 18:06:28.597  INFO 5472 --- [http-nio-8082-exec-1] c.l.l.s.i.ClientServiceImpl              : Getting one client by first name
+2023-07-19 18:06:57.964  INFO 5472 --- [http-nio-8082-exec-3] c.l.l.s.i.ClientServiceImpl              : Deleting client...
+2023-07-19 18:08:37.426  INFO 5472 --- [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2023-07-19 18:08:37.427  INFO 5472 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2023-07-19 18:08:37.440  INFO 5472 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2023-07-19 18:08:43.655  INFO 5812 --- [main] c.l.laywerapi.LawyerApiApplication       : Starting LawyerApiApplication using Java 17.0.6 on DESKTOP-NVAMDEM with PID 5812 (C:\Users\Korisnik\Desktop\laywer-api\target\classes started by Korisnik in C:\Users\Korisnik\Desktop\laywer-api)
+2023-07-19 18:08:43.658  INFO 5812 --- [main] c.l.laywerapi.LawyerApiApplication       : No active profile set, falling back to 1 default profile: "default"
+2023-07-19 18:08:44.860  INFO 5812 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2023-07-19 18:08:44.932  INFO 5812 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 60 ms. Found 3 JPA repository interfaces.
+2023-07-19 18:08:45.895  INFO 5812 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8082 (http)
+2023-07-19 18:08:45.908  INFO 5812 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2023-07-19 18:08:45.909  INFO 5812 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.76]
+2023-07-19 18:08:46.163  INFO 5812 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2023-07-19 18:08:46.163  INFO 5812 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 2433 ms
+2023-07-19 18:08:46.360  INFO 5812 --- [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2023-07-19 18:08:46.440  INFO 5812 --- [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 5.6.15.Final
+2023-07-19 18:08:46.634  INFO 5812 --- [main] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+2023-07-19 18:08:46.777  INFO 5812 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2023-07-19 18:08:46.975  INFO 5812 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2023-07-19 18:08:47.014  INFO 5812 --- [main] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.MySQL55Dialect
+2023-07-19 18:08:47.906  INFO 5812 --- [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2023-07-19 18:08:47.914  INFO 5812 --- [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2023-07-19 18:08:48.716  WARN 5812 --- [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2023-07-19 18:08:49.113  INFO 5812 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@6a4238ff, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@2b98c310, org.springframework.security.web.context.SecurityContextPersistenceFilter@be9bf2e, org.springframework.security.web.header.HeaderWriterFilter@11d0bff5, org.springframework.security.web.authentication.logout.LogoutFilter@78e34499, org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter@4cf1bd4a, org.springframework.security.web.authentication.ui.DefaultLoginPageGeneratingFilter@4198921f, org.springframework.security.web.authentication.ui.DefaultLogoutPageGeneratingFilter@19834eb7, org.springframework.security.web.authentication.www.BasicAuthenticationFilter@5bfeb9ba, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@949f0d, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@4b3eaf39, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@26361572, org.springframework.security.web.session.SessionManagementFilter@629dfb5a, org.springframework.security.web.access.ExceptionTranslationFilter@2bf0bb93, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@ae5d544]
+2023-07-19 18:08:49.524  INFO 5812 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8082 (http) with context path ''

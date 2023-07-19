@@ -55,13 +55,13 @@ public class RegistrationCompleteEventListener implements ApplicationListener<Re
         String subject = "Email Verification";
         String senderName = "User Registration LawyerAPI";
         String mailContent = "<p> Hi, " + user.getFirstName() + ", </p>" +
-                "<p>Thank you for registering with us," + "" +
-                "Please, follow the link below to complete your registration.</p>" +
+                "<p>Thank you for registering with us." + "" +
+                " Please, follow the link below to complete your registration.</p>" +
                 "<a href=\"" + url + "\">Verify your email to activate your account</a>" +
                 "<p> Thank you <br> Users Registration Portal Service";
         MimeMessage message = mailSender.createMimeMessage();
         var messageHelper = new MimeMessageHelper(message);
-        messageHelper.setFrom("golubovicrados@gmail.com", senderName);
+        messageHelper.setFrom("useremail@example.com", senderName);
         messageHelper.setTo(user.getEmail());
         messageHelper.setSubject(subject);
         messageHelper.setText(mailContent, true);
