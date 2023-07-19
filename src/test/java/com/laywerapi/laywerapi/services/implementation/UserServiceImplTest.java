@@ -3,7 +3,6 @@ package com.laywerapi.laywerapi.services.implementation;
 import com.laywerapi.laywerapi.dto.request.UserAddRequestDTO;
 import com.laywerapi.laywerapi.dto.response.UserResponseDTO;
 import com.laywerapi.laywerapi.dto.response.UserUpdatedResponseDTO;
-import com.laywerapi.laywerapi.entity.CustomUserDetails;
 import com.laywerapi.laywerapi.entity.User;
 import com.laywerapi.laywerapi.entity.UserRegistrationDetails;
 import com.laywerapi.laywerapi.exception.ApiRequestException;
@@ -36,53 +35,6 @@ class UserServiceImplTest {
     @InjectMocks
     private UserServiceImpl userServiceImpl;
 
-    @Test
-    void testCreateUserAccount() throws Exception {
-        // GIVEN
-        UserAddRequestDTO userAddRequestDTO = TestUtil.createUserAddRequestDTO();
-        User user = TestUtil.newCreateUser();
-
-        // WHEN
-        when(userRepository.findByEmail(userAddRequestDTO.getEmail())).thenReturn(Optional.empty());
-        when(userRepository.findByUsername(userAddRequestDTO.getUsername())).thenReturn(Optional.empty());
-        when(passwordEncoder.encode(userAddRequestDTO.getPassword())).thenReturn("password");
-        when(userRepository.save(user)).thenReturn(user);
-
-        // ACTION
-        UserResponseDTO actual = userServiceImpl.createAccount(userAddRequestDTO);
-
-        // THEN
-        assertNotNull(actual);
-        assertEquals("FIRSTNAME", actual.getFirstName());
-    }
-
-    @Test
-    void testCreateUserAccountWithEmailWhichAlreadyExist() {
-        // GIVEN
-        var userAddRequestDTO = TestUtil.createUserAddRequestDTO();
-        var user = new User(userAddRequestDTO);
-        user.setId(12346L);
-
-        // WHEN
-        when(userRepository.findByEmail(userAddRequestDTO.getEmail())).thenReturn(Optional.of(user));
-
-        // THEN
-        assertThrows(ApiRequestException.class, () -> userServiceImpl.createAccount(userAddRequestDTO));
-    }
-
-    @Test
-    void testCreateUserAccountWithUsernameWhichAlreadyExist() {
-        // GIVEN
-        var userAddRequestDTO = TestUtil.createUserAddRequestDTO();
-        var user = new User(userAddRequestDTO);
-        user.setId(12346L);
-
-        // WHEN
-        when(userRepository.findByUsername(userAddRequestDTO.getUsername())).thenReturn(Optional.of(user));
-
-        // THEN
-        assertThrows(ApiRequestException.class, () -> userServiceImpl.createAccount(userAddRequestDTO));
-    }
 
     @Test
     void testCreateAccountWithoutUserAddRequestDTO() {

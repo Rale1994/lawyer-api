@@ -7,14 +7,16 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.ApplicationListener;
 import org.springframework.mail.javamail.JavaMailSender;
-import org.springframework.mail.javamail.MimeMessageHelper;
-import org.springframework.mail.javamail.MimeMessagePreparator;
 import org.springframework.stereotype.Component;
+
+import java.io.UnsupportedEncodingException;
+import java.util.UUID;
+
+import org.springframework.mail.javamail.MimeMessageHelper;
 
 import javax.mail.MessagingException;
 import javax.mail.internet.MimeMessage;
-import java.io.UnsupportedEncodingException;
-import java.util.UUID;
+
 
 @Slf4j
 @Component
@@ -39,13 +41,13 @@ public class RegistrationCompleteEventListener implements ApplicationListener<Re
         String url = event.getApplicationUrl() + "/api/v1/registration/verifyEmail?token=" + verificationToken;
 
         // 5. Send the email
-
         try {
             sendVerificationEmail(url);
-        } catch (MessagingException | UnsupportedEncodingException e) {
+        } catch (UnsupportedEncodingException e) {
+            throw new RuntimeException(e);
+        } catch (MessagingException e) {
             throw new RuntimeException(e);
         }
-
         log.info("Click the link to verify your registration : {}", url);
     }
 
@@ -58,11 +60,17 @@ public class RegistrationCompleteEventListener implements ApplicationListener<Re
                 "<a href=\"" + url + "\">Verify your email to activate your account</a>" +
                 "<p> Thank you <br> Users Registration Portal Service";
         MimeMessage message = mailSender.createMimeMessage();
-        MimeMessageHelper messageHelper = new MimeMessageHelper(message);
-        messageHelper.setFrom("mail@example.com", senderName);
+        var messageHelper = new MimeMessageHelper(message);
+        messageHelper.setFrom("golubovicrados@gmail.com", senderName);
         messageHelper.setTo(user.getEmail());
         messageHelper.setSubject(subject);
         messageHelper.setText(mailContent, true);
-        mailSender.send((MimeMessagePreparator) message);
+        mailSender.send(message);
+//        SimpleMailMessage simpleMailMessage = new SimpleMailMessage();
+//        simpleMailMessage.setFrom("golubovicrados@gmail.com");
+//        simpleMailMessage.setTo(user.getEmail());
+//        simpleMailMessage.setSubject(subject);
+//        simpleMailMessage.setText(url);
+//        this.mailSender.send(simpleMailMessage);
     }
 }

@@ -77,7 +77,7 @@ public class UserServiceImpl implements UserService {
     public User registerUser(UserAddRequestDTO userAddRequestDTO) {
         Optional<User> optionalUser = userRepository.findByEmail(userAddRequestDTO.getEmail());
         if (optionalUser.isPresent()) {
-            throw new ApiRequestException("User with email" + userAddRequestDTO + " already exists!");
+            throw new ApiRequestException("User with email" + userAddRequestDTO.getEmail() + " already exists!");
         }
         User user = new User(userAddRequestDTO);
         user.setPassword(passwordEncoder.encode(userAddRequestDTO.getPassword()));
