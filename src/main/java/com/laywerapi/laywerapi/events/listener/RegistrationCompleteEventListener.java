@@ -66,11 +66,5 @@ public class RegistrationCompleteEventListener implements ApplicationListener<Re
         messageHelper.setSubject(subject);
         messageHelper.setText(mailContent, true);
         mailSender.send(message);
-//        SimpleMailMessage simpleMailMessage = new SimpleMailMessage();
-//        simpleMailMessage.setFrom("golubovicrados@gmail.com");
-//        simpleMailMessage.setTo(user.getEmail());
-//        simpleMailMessage.setSubject(subject);
-//        simpleMailMessage.setText(url);
-//        this.mailSender.send(simpleMailMessage);
     }
 }
