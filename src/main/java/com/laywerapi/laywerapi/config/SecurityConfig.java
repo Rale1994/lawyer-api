@@ -29,11 +29,10 @@ public class SecurityConfig {
         return http
                 .csrf().disable()
                 .authorizeRequests(auth -> auth
-                        .antMatchers("api/v1/users/**").permitAll()
                         .antMatchers("api/v1/registration/**").permitAll()
-                        .antMatchers("api/v1/clients/**").hasAnyAuthority("USER")
-                        .antMatchers("api/v1/users/**").hasAnyAuthority("USER")
-                        .antMatchers("api/v1/users/all").hasAnyAuthority("ADMIN"))
+                        .antMatchers("api/v1/clients/**").access("hasRole('USER')")
+                        .antMatchers("api/v1/users/**").access("hasRole('USER')")
+                        .antMatchers("api/v1/users/all").access("hasRole('ADMIN')"))
                 .userDetailsService(userRegistrationDetails)
                 .headers(headers -> headers.frameOptions().sameOrigin())
                 .httpBasic(Customizer.withDefaults())

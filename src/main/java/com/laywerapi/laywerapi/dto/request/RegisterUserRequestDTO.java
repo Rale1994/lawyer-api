@@ -5,7 +5,7 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
 @Data
-public class UserAddRequestDTO {
+public class RegisterUserRequestDTO {
     @NotNull(message = "First name is required")
     private String firstName;
     @NotBlank(message = "Last name is required")

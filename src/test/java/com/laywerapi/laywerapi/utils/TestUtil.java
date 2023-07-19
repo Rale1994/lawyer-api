@@ -1,7 +1,7 @@
 package com.laywerapi.laywerapi.utils;
 
 import com.laywerapi.laywerapi.dto.request.ClientRequestDTO;
-import com.laywerapi.laywerapi.dto.request.UserAddRequestDTO;
+import com.laywerapi.laywerapi.dto.request.RegisterUserRequestDTO;
 import com.laywerapi.laywerapi.dto.request.UserUpdateRequestDTO;
 import com.laywerapi.laywerapi.dto.response.ClientResponseDTO;
 import com.laywerapi.laywerapi.dto.response.UserUpdatedResponseDTO;
@@ -9,7 +9,6 @@ import com.laywerapi.laywerapi.entity.Client;
 import com.laywerapi.laywerapi.entity.CustomUserDetails;
 import com.laywerapi.laywerapi.entity.User;
 import com.laywerapi.laywerapi.entity.UserRegistrationDetails;
-import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -17,16 +16,16 @@ import java.util.stream.Collectors;
 
 public class TestUtil {
 
-    public static UserAddRequestDTO createUserAddRequestDTO() {
-        UserAddRequestDTO userAddRequestDTO = new UserAddRequestDTO();
-        userAddRequestDTO.setFirstName("FIRSTNAME");
-        userAddRequestDTO.setLastName("LASTNAME");
-        userAddRequestDTO.setEmail("email@example.com");
-        userAddRequestDTO.setPhone("+38145845687");
-        userAddRequestDTO.setUsername("username");
-        userAddRequestDTO.setPassword("password");
+    public static RegisterUserRequestDTO createUserAddRequestDTO() {
+        RegisterUserRequestDTO registerUserRequestDTO = new RegisterUserRequestDTO();
+        registerUserRequestDTO.setFirstName("FIRSTNAME");
+        registerUserRequestDTO.setLastName("LASTNAME");
+        registerUserRequestDTO.setEmail("email@example.com");
+        registerUserRequestDTO.setPhone("+38145845687");
+        registerUserRequestDTO.setUsername("username");
+        registerUserRequestDTO.setPassword("password");
 
-        return userAddRequestDTO;
+        return registerUserRequestDTO;
     }
 
     public static User createUser() {

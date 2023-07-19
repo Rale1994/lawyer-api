@@ -1,6 +1,6 @@
 package com.laywerapi.laywerapi.entity;
 
-import com.laywerapi.laywerapi.dto.request.UserAddRequestDTO;
+import com.laywerapi.laywerapi.dto.request.RegisterUserRequestDTO;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -28,12 +28,12 @@ public class User {
     @OneToMany(mappedBy = "userId", cascade = CascadeType.ALL)
     private List<Client> clients;
 
-    public User(UserAddRequestDTO userAddRequestDTO) {
-        this.firstName = userAddRequestDTO.getFirstName();
-        this.lastName = userAddRequestDTO.getLastName();
-        this.email = userAddRequestDTO.getEmail();
-        this.username = userAddRequestDTO.getUsername();
-        this.phone = userAddRequestDTO.getPhone();
+    public User(RegisterUserRequestDTO registerUserRequestDTO) {
+        this.firstName = registerUserRequestDTO.getFirstName();
+        this.lastName = registerUserRequestDTO.getLastName();
+        this.email = registerUserRequestDTO.getEmail();
+        this.username = registerUserRequestDTO.getUsername();
+        this.phone = registerUserRequestDTO.getPhone();
         this.role = "USER";
     }
 

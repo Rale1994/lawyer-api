@@ -1,6 +1,6 @@
 package com.laywerapi.laywerapi.resource;
 
-import com.laywerapi.laywerapi.dto.request.UserAddRequestDTO;
+import com.laywerapi.laywerapi.dto.request.RegisterUserRequestDTO;
 import com.laywerapi.laywerapi.entity.User;
 import com.laywerapi.laywerapi.entity.VerificationToken;
 import com.laywerapi.laywerapi.events.RegistrationCompleteEvent;
@@ -24,8 +24,8 @@ public class RegistrationController {
 
 
     @PostMapping
-    public String register(@RequestBody UserAddRequestDTO userAddRequestDTO, final HttpServletRequest request) {
-        User user = userService.registerUser(userAddRequestDTO);
+    public String register(@RequestBody RegisterUserRequestDTO registerUserRequestDTO, final HttpServletRequest request) {
+        User user = userService.registerUser(registerUserRequestDTO);
         // publish registration event
         publisher.publishEvent(new RegistrationCompleteEvent(user, applicationUrl(request)));
         return "Success!, Please check your email to complete you registration!";

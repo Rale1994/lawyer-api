@@ -1,6 +1,6 @@
 package com.laywerapi.laywerapi.services.implementation;
 
-import com.laywerapi.laywerapi.dto.request.UserAddRequestDTO;
+import com.laywerapi.laywerapi.dto.request.RegisterUserRequestDTO;
 import com.laywerapi.laywerapi.dto.request.UserUpdateRequestDTO;
 import com.laywerapi.laywerapi.dto.response.UserResponseDTO;
 import com.laywerapi.laywerapi.dto.response.UserUpdatedResponseDTO;
@@ -38,15 +38,15 @@ public class UserServiceImpl implements UserService {
 
 
     @Override
-    public UserResponseDTO createAccount(UserAddRequestDTO userAddRequestDTO) throws Exception {
+    public UserResponseDTO createAccount(RegisterUserRequestDTO registerUserRequestDTO) throws Exception {
         log.info("Creating account...");
-        Optional<User> userEmail = userRepository.findByEmail(userAddRequestDTO.getEmail());
-        Optional<User> userUsername = userRepository.findByUsername(userAddRequestDTO.getUsername());
+        Optional<User> userEmail = userRepository.findByEmail(registerUserRequestDTO.getEmail());
+        Optional<User> userUsername = userRepository.findByUsername(registerUserRequestDTO.getUsername());
         if (userEmail.isPresent() || userUsername.isPresent()) {
             throw new ApiRequestException("User already exist");
         }
-        User user = new User(userAddRequestDTO);
-        user.setPassword(passwordEncoder.encode(userAddRequestDTO.getPassword()));
+        User user = new User(registerUserRequestDTO);
+        user.setPassword(passwordEncoder.encode(registerUserRequestDTO.getPassword()));
         User savedUser = userRepository.save(user);
         return new UserResponseDTO(savedUser);
     }
@@ -74,13 +74,13 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public User registerUser(UserAddRequestDTO userAddRequestDTO) {
-        Optional<User> optionalUser = userRepository.findByEmail(userAddRequestDTO.getEmail());
+    public User registerUser(RegisterUserRequestDTO registerUserRequestDTO) {
+        Optional<User> optionalUser = userRepository.findByEmail(registerUserRequestDTO.getEmail());
         if (optionalUser.isPresent()) {
-            throw new ApiRequestException("User with email" + userAddRequestDTO.getEmail() + " already exists!");
+            throw new ApiRequestException("User with email" + registerUserRequestDTO.getEmail() + " already exists!");
         }
-        User user = new User(userAddRequestDTO);
-        user.setPassword(passwordEncoder.encode(userAddRequestDTO.getPassword()));
+        User user = new User(registerUserRequestDTO);
+        user.setPassword(passwordEncoder.encode(registerUserRequestDTO.getPassword()));
 
         return userRepository.save(user);
     }

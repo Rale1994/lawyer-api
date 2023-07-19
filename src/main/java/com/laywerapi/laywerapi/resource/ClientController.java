@@ -32,25 +32,25 @@ public class ClientController {
         return clientService.addClient(loggedUser, clientRequestDTO);
     }
 
-//    @PreAuthorize("hasRole('USER')")
+    //    @PreAuthorize("hasRole('USER')")
     @GetMapping("/all")
     public List<ClientResponseDTO> allClients(@AuthenticationPrincipal UserRegistrationDetails loggedUser) {
         return clientService.allClients(loggedUser);
     }
 
-//    @PreAuthorize("hasRole('USER')")
+    //    @PreAuthorize("hasRole('USER')")
     @GetMapping("/{clientName}")
     public List<ClientResponseDTO> getOneByFirstName(@AuthenticationPrincipal UserRegistrationDetails loggedUser, @PathVariable String clientName) {
         return clientService.getOneByFirstName(loggedUser, clientName);
     }
 
-//    @PreAuthorize("hasRole('USER')")
+
     @PutMapping("/update/{clientId}")
     public ClientResponseDTO updateClient(@AuthenticationPrincipal UserRegistrationDetails loggedUser, @RequestBody ClientRequestDTO clientRequestDTO, @PathVariable Long clientId) {
         return clientService.updateClient(loggedUser, clientRequestDTO, clientId);
     }
 
-//    @PreAuthorize("hasRole('USER')")
+    //    @PreAuthorize("hasRole('USER')")
     @DeleteMapping("/{clientId}")
     public ResponseEntity<?> deleteClient(@AuthenticationPrincipal UserRegistrationDetails loggedUser, @PathVariable Long clientId) {
         clientService.deleteClient(loggedUser, clientId);
