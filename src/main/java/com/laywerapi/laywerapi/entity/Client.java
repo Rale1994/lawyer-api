@@ -6,6 +6,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity(name = "clients")
 @Data
@@ -13,7 +14,7 @@ import javax.persistence.*;
 @AllArgsConstructor
 public class Client {
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     private String firstName;
     private String lastName;
@@ -23,6 +24,8 @@ public class Client {
     @ManyToOne
     @JoinColumn(name = "userId")
     private User userId;
+    @OneToMany(mappedBy = "clientId", cascade = CascadeType.ALL)
+    private List<Trial> trials;
 
     public Client(ClientRequestDTO clientRequestDTO, User user) {
         this.firstName = clientRequestDTO.getFirstName().toUpperCase();

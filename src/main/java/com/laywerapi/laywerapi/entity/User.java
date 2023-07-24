@@ -27,6 +27,8 @@ public class User {
     private boolean isEnabled = false;
     @OneToMany(mappedBy = "userId", cascade = CascadeType.ALL)
     private List<Client> clients;
+    @OneToMany(mappedBy = "userId", cascade = CascadeType.ALL)
+    private List<Trial> trials;
 
     public User(RegisterUserRequestDTO registerUserRequestDTO) {
         this.firstName = registerUserRequestDTO.getFirstName();

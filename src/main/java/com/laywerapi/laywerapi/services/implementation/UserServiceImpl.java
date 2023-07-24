@@ -36,20 +36,20 @@ public class UserServiceImpl implements UserService {
         this.utils = utils;
     }
 
-
-    @Override
-    public UserResponseDTO createAccount(RegisterUserRequestDTO registerUserRequestDTO) throws Exception {
-        log.info("Creating account...");
-        Optional<User> userEmail = userRepository.findByEmail(registerUserRequestDTO.getEmail());
-        Optional<User> userUsername = userRepository.findByUsername(registerUserRequestDTO.getUsername());
-        if (userEmail.isPresent() || userUsername.isPresent()) {
-            throw new ApiRequestException("User already exist");
-        }
-        User user = new User(registerUserRequestDTO);
-        user.setPassword(passwordEncoder.encode(registerUserRequestDTO.getPassword()));
-        User savedUser = userRepository.save(user);
-        return new UserResponseDTO(savedUser);
-    }
+//
+//    @Override
+//    public UserResponseDTO createAccount(RegisterUserRequestDTO registerUserRequestDTO) throws Exception {
+//        log.info("Creating account...");
+//        Optional<User> userEmail = userRepository.findByEmail(registerUserRequestDTO.getEmail());
+//        Optional<User> userUsername = userRepository.findByUsername(registerUserRequestDTO.getUsername());
+//        if (userEmail.isPresent() || userUsername.isPresent()) {
+//            throw new ApiRequestException("User already exist");
+//        }
+//        User user = new User(registerUserRequestDTO);
+//        user.setPassword(passwordEncoder.encode(registerUserRequestDTO.getPassword()));
+//        User savedUser = userRepository.save(user);
+//        return new UserResponseDTO(savedUser);
+//    }
 
     @Override
     public UserUpdatedResponseDTO findUserForUpdate(UserRegistrationDetails loggedUser, UserUpdateRequestDTO userUpdateRequestDTO) throws Exception {

@@ -2,9 +2,7 @@ package com.laywerapi.laywerapi.services;
 
 import com.laywerapi.laywerapi.dto.request.ClientRequestDTO;
 import com.laywerapi.laywerapi.dto.response.ClientResponseDTO;
-import com.laywerapi.laywerapi.entity.CustomUserDetails;
 import com.laywerapi.laywerapi.entity.UserRegistrationDetails;
-import com.laywerapi.laywerapi.services.implementation.UserRegistrationDetailsImpl;
 
 import java.util.List;
 

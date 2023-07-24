@@ -58,7 +58,10 @@ public class ClientServiceImpl implements ClientService {
     public List<ClientResponseDTO> allClients(UserRegistrationDetails loggedUser) {
         log.info("Getting all clients...");
         List<Client> clients = (List<Client>) clientRepository.findAll();
-        return clients.stream().filter(client -> Objects.equals(client.getUserId().getId(), loggedUser.getId())).map(ClientResponseDTO::new).collect(Collectors.toList());
+        return clients.stream()
+                .filter(client -> Objects.equals(client.getUserId().getId(), loggedUser.getId()))
+                .map(ClientResponseDTO::new)
+                .collect(Collectors.toList());
     }
 
     @Override

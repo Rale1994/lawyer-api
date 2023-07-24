@@ -32,6 +32,7 @@ public class SecurityConfig {
                         .antMatchers("api/v1/registration/**").permitAll()
                         .antMatchers("api/v1/clients/**").access("hasRole('USER')")
                         .antMatchers("api/v1/users/**").access("hasRole('USER')")
+                        .antMatchers("api/v1/trials/**").access("hasRole('USER')")
                         .antMatchers("api/v1/users/all").access("hasRole('ADMIN')"))
                 .userDetailsService(userRegistrationDetails)
                 .headers(headers -> headers.frameOptions().sameOrigin())

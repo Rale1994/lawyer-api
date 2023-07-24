@@ -10,7 +10,7 @@ import com.laywerapi.laywerapi.entity.UserRegistrationDetails;
 import java.util.List;
 
 public interface UserService {
-    UserResponseDTO createAccount(RegisterUserRequestDTO registerUserRequestDTO) throws Exception;
+//    UserResponseDTO createAccount(RegisterUserRequestDTO registerUserRequestDTO) throws Exception;
 
     UserUpdatedResponseDTO findUserForUpdate(UserRegistrationDetails loggedUser, UserUpdateRequestDTO userUpdateRequestDTO) throws Exception;
 

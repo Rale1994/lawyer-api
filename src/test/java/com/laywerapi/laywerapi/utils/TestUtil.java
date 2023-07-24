@@ -5,12 +5,11 @@ import com.laywerapi.laywerapi.dto.request.RegisterUserRequestDTO;
 import com.laywerapi.laywerapi.dto.request.UserUpdateRequestDTO;
 import com.laywerapi.laywerapi.dto.response.ClientResponseDTO;
 import com.laywerapi.laywerapi.dto.response.UserUpdatedResponseDTO;
-import com.laywerapi.laywerapi.entity.Client;
-import com.laywerapi.laywerapi.entity.CustomUserDetails;
-import com.laywerapi.laywerapi.entity.User;
-import com.laywerapi.laywerapi.entity.UserRegistrationDetails;
+import com.laywerapi.laywerapi.entity.*;
 
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -51,7 +50,7 @@ public class TestUtil {
         user.setPhone("+38145845687");
         user.setUsername("username");
         user.setPassword("password");
-        user.setRole("ROLE_USER");
+        user.setRole("USER");
 
         return user;
     }
@@ -183,6 +182,7 @@ public class TestUtil {
         clients.add(newClient);
         return clients;
     }
+
     public static List<Client> creatSameClientListNew(Client client, UserRegistrationDetails loggedUser) {
         List<Client> clients = new ArrayList<>();
         Client newClient = new Client();
@@ -214,4 +214,20 @@ public class TestUtil {
 
     }
 
+
+    public static VerificationToken createVerificationToken(String token, User user) {
+        VerificationToken verificationToken = new VerificationToken();
+        verificationToken.setToken(token);
+        verificationToken.setUser(user);
+        verificationToken.setExpirationTime(verificationToken.getTokenExpirationTime());
+
+        return verificationToken;
+    }
+
+    public static Date addHoursToJavaUtilDate(Date expirationTime) {
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTime(expirationTime);
+        calendar.add(Calendar.HOUR_OF_DAY, -1);
+        return calendar.getTime();
+    }
 }
