@@ -8,8 +8,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
-import java.util.Date;
-
+import java.time.LocalDateTime;
 @Entity(name = "trials")
 @Getter
 @Setter
@@ -20,7 +19,7 @@ public class Trial {
     private Long id;
     private String issue;
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm")
-    private Date date;
+    private LocalDateTime date;
     @ManyToOne
     @JoinColumn(name = "userId")
     @JsonIgnore

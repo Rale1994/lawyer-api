@@ -36,10 +36,10 @@ public class ClientServiceImpl implements ClientService {
         log.info("Adding client...");
         List<Client> clients = clientRepository.findByEmail(clientRequestDTO.getEmail());
         if (!clients.isEmpty()) {
-            log.info("We have some client with this email");
+            log.error("We have some client with this email");
             for (Client client : clients) {
                 if (client.getUserId().getId().equals(loggedUser.getId())) {
-                    log.info("Lawyer already has this client!");
+                    log.error("Lawyer already has this client!");
                     throw new ApiRequestException("You already have this client!");
                 }
             }

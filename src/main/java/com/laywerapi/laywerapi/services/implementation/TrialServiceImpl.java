@@ -17,6 +17,8 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
+import java.util.Date;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
@@ -36,7 +38,7 @@ public class TrialServiceImpl implements TrialService {
         log.info("Adding trial, User: " + loggedUser.getUser().getFirstName() + " for clientId: " + clientId);
         Optional<Client> clientOptional = clientRepository.findById(clientId);
         if (clientOptional.isEmpty()) {
-            log.warn("Client doesn't exist!");
+            log.error("Client doesn't exist!");
             throw new ApiRequestException("Client with id " + clientId + " does not exist!");
         }
         Optional<User> userOptional = userRepository.findById(loggedUser.getId());
@@ -57,6 +59,14 @@ public class TrialServiceImpl implements TrialService {
                 .filter(trial -> Objects.equals(trial.getClientId().getId(), clientId))
                 .map(TrialResponseDTO::new)
                 .collect(Collectors.toList());
+    }
 
+    @Override
+    public List<Trial> findUserTrials() {
+        LocalDateTime now = LocalDateTime.now();
+        List<Trial> trials = (List<Trial>) trialRepository.findAll();
+        return trials.stream()
+                .filter(trial -> (trial.getDate().getHour() - 1) == now.getHour())
+                .collect(Collectors.toList());
     }
 }

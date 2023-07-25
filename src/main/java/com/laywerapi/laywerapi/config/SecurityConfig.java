@@ -1,7 +1,7 @@
 package com.laywerapi.laywerapi.config;
 
-import com.laywerapi.laywerapi.services.implementation.UserDetailServiceImpl;
 import com.laywerapi.laywerapi.services.implementation.UserRegistrationDetailsImpl;
+import com.laywerapi.laywerapi.shared.Constants;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.Customizer;
@@ -30,10 +30,10 @@ public class SecurityConfig {
                 .csrf().disable()
                 .authorizeRequests(auth -> auth
                         .antMatchers("api/v1/registration/**").permitAll()
-                        .antMatchers("api/v1/clients/**").access("hasRole('USER')")
-                        .antMatchers("api/v1/users/**").access("hasRole('USER')")
-                        .antMatchers("api/v1/trials/**").access("hasRole('USER')")
-                        .antMatchers("api/v1/users/all").access("hasRole('ADMIN')"))
+                        .antMatchers(Constants.BASE_URL + "/clients/**").access("hasRole('USER')")
+                        .antMatchers(Constants.BASE_URL + "/users/**").access("hasRole('USER')")
+                        .antMatchers(Constants.BASE_URL + "/trials/**").access("hasRole('USER')")
+                        .antMatchers(Constants.BASE_URL + "/users/all").access("hasRole('ADMIN')"))
                 .userDetailsService(userRegistrationDetails)
                 .headers(headers -> headers.frameOptions().sameOrigin())
                 .httpBasic(Customizer.withDefaults())

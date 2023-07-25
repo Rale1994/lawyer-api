@@ -54,9 +54,10 @@ public class UserServiceImpl implements UserService {
     @Override
     public UserUpdatedResponseDTO findUserForUpdate(UserRegistrationDetails loggedUser, UserUpdateRequestDTO userUpdateRequestDTO) throws Exception {
         log.info("Updating account...");
-        Optional<User> optionalUser = userRepository.findByUsername(loggedUser.getUsername());
+        Optional<User> optionalUser = userRepository.findByEmail(loggedUser.getUser().getEmail());
         if (optionalUser.isEmpty()) {
-            throw new ApiRequestException("User with this username does not exist");
+            log.error("User with email: "+loggedUser.getUser().getEmail()+" does not exist");
+            throw new ApiRequestException("User with email: "+loggedUser.getUser().getEmail()+" does not exist");
         }
         User user = optionalUser.get();
         log.info("Checking for update fields");
@@ -77,6 +78,7 @@ public class UserServiceImpl implements UserService {
     public User registerUser(RegisterUserRequestDTO registerUserRequestDTO) {
         Optional<User> optionalUser = userRepository.findByEmail(registerUserRequestDTO.getEmail());
         if (optionalUser.isPresent()) {
+            log.error("User with email" + registerUserRequestDTO.getEmail() + " already exists!");
             throw new ApiRequestException("User with email" + registerUserRequestDTO.getEmail() + " already exists!");
         }
         User user = new User(registerUserRequestDTO);
@@ -93,8 +95,10 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public String validateToken(String verificationToken) {
+        log.info("Validating token...");
         VerificationToken token = verificationTokenRepository.findByToken(verificationToken);
         if (token == null) {
+            log.error("Invalid verification token!");
             return "Invalid verification token!";
         }
         User user = token.getUser();

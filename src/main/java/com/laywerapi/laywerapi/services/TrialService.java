@@ -12,4 +12,6 @@ public interface TrialService {
     TrialAddResponseDTO addTrial(UserRegistrationDetails loggedUser, TrialAddRequestDTO trialAddRequestDTO, Long clientId);
 
     List<TrialResponseDTO> getAllClientTrials(UserRegistrationDetails loggedUser, Long clientId);
+
+    List<Trial> findUserTrials();
 }

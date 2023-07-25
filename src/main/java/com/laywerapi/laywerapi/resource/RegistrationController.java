@@ -6,6 +6,7 @@ import com.laywerapi.laywerapi.entity.VerificationToken;
 import com.laywerapi.laywerapi.events.RegistrationCompleteEvent;
 import com.laywerapi.laywerapi.repositories.VerificationTokenRepository;
 import com.laywerapi.laywerapi.services.UserService;
+import com.laywerapi.laywerapi.shared.Constants;
 import io.swagger.annotations.Api;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.ApplicationEventPublisher;
@@ -15,7 +16,7 @@ import javax.servlet.http.HttpServletRequest;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("api/v1/registration")
+@RequestMapping(Constants.BASE_URL + "/registration")
 @Api
 public class RegistrationController {
     private final UserService userService;
