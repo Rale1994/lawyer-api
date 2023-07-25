@@ -7,7 +7,6 @@ import com.laywerapi.laywerapi.entity.Trial;
 import com.laywerapi.laywerapi.entity.User;
 import com.laywerapi.laywerapi.entity.UserRegistrationDetails;
 import com.laywerapi.laywerapi.events.TrialEmailNotificationEvent;
-import com.laywerapi.laywerapi.repositories.TrialRepository;
 import com.laywerapi.laywerapi.services.TrialService;
 import com.laywerapi.laywerapi.shared.Constants;
 import io.swagger.annotations.Api;
@@ -19,7 +18,6 @@ import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
-import java.time.LocalDateTime;
 import java.util.List;
 
 @RestController
@@ -31,7 +29,6 @@ public class TrialController {
 
     private final TrialService trialService;
     private final ApplicationEventPublisher publisher;
-    private final TrialRepository trialRepository;
 
     @PostMapping(path = "/addTrial/{clientId}")
     public TrialAddResponseDTO addTrial(@AuthenticationPrincipal UserRegistrationDetails loggedUser,
@@ -51,9 +48,12 @@ public class TrialController {
         List<Trial> trials = trialService.findUserTrials();
         if (!trials.isEmpty()) {
             for (Trial trial : trials) {
+                log.info("Get some trials!");
                 User user = trial.getUserId();
                 publisher.publishEvent(new TrialEmailNotificationEvent(user));
             }
+        } else {
+            log.warn("Lawyer currently doesn't have any trials!");
         }
     }
 }
