@@ -39,7 +39,7 @@ public class TrialEmailNotificationCompleteEvent implements ApplicationListener<
         String mailContent = "<p> Hi, " + user.getFirstName() + ", </p>" +
                 "<p>You have trials!" + "" +
                 " Hello you have trials for next hour" +
-                "Please check your clients" +
+                " Please check your clients trials" +
                 "<p> Thank you <br> Users Notification Portal Service";
         MimeMessage message = mailSender.createMimeMessage();
         var messageHelper = new MimeMessageHelper(message);

@@ -37,11 +37,11 @@ public class TrialServiceImpl implements TrialService {
     public TrialAddResponseDTO addTrial(UserRegistrationDetails loggedUser, TrialAddRequestDTO trialAddRequestDTO, Long clientId) {
         log.info("Adding trial, User: " + loggedUser.getUser().getFirstName() + " for clientId: " + clientId);
         Optional<Client> clientOptional = clientRepository.findById(clientId);
+        Optional<User> userOptional = userRepository.findById(loggedUser.getId());
         if (clientOptional.isEmpty()) {
             log.error("Client doesn't exist!");
             throw new ApiRequestException("Client with id " + clientId + " does not exist!");
         }
-        Optional<User> userOptional = userRepository.findById(loggedUser.getId());
         User user = userOptional.get();
         Client client = clientOptional.get();
         ClientResponseDTO clientResponseDTO = new ClientResponseDTO(client);

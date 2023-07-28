@@ -2,11 +2,14 @@ package com.laywerapi.laywerapi.utils;
 
 import com.laywerapi.laywerapi.dto.request.ClientRequestDTO;
 import com.laywerapi.laywerapi.dto.request.RegisterUserRequestDTO;
+import com.laywerapi.laywerapi.dto.request.TrialAddRequestDTO;
 import com.laywerapi.laywerapi.dto.request.UserUpdateRequestDTO;
 import com.laywerapi.laywerapi.dto.response.ClientResponseDTO;
 import com.laywerapi.laywerapi.dto.response.UserUpdatedResponseDTO;
 import com.laywerapi.laywerapi.entity.*;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
@@ -122,6 +125,18 @@ public class TestUtil {
         return client;
     }
 
+    public static Client createClientTrial(User user) {
+        Client client = new Client();
+        client.setId(12345L);
+        client.setLastName("LastNAme");
+        client.setFirstName("FirstNAme");
+        client.setPhone("12345");
+        client.setEmail("email@example.com");
+        client.setIdNumber(1323123L);
+        client.setUserId(user);
+        return client;
+    }
+
     public static List<Client> creatClientList(ClientRequestDTO clientRequestDTO, User user) {
         List<Client> clients = new ArrayList<>();
         clients.add(TestUtil.createClient(clientRequestDTO, user));
@@ -229,5 +244,50 @@ public class TestUtil {
         calendar.setTime(expirationTime);
         calendar.add(Calendar.HOUR_OF_DAY, -1);
         return calendar.getTime();
+    }
+
+    public static TrialAddRequestDTO createTrialAddRequestDTO() {
+        TrialAddRequestDTO trialAddRequestDTO = new TrialAddRequestDTO();
+        LocalDateTime dateTime = dateTimeFormatterFromString("2022-12-08 09:42");
+        trialAddRequestDTO.setDate(dateTime);
+        trialAddRequestDTO.setIssue("issue");
+        return trialAddRequestDTO;
+    }
+
+    public static Trial creatTrial(TrialAddRequestDTO trialAddRequestDTO, User newLogged, Client client) {
+        Trial trial = new Trial(trialAddRequestDTO, newLogged, client);
+        return trial;
+    }
+
+    private static LocalDateTime dateTimeFormatterFromString(String date) {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+        LocalDateTime dateTime = LocalDateTime.parse(date, formatter);
+        return dateTime;
+    }
+
+    public static List<Trial> createTrialList(User user, Client client) {
+        List<Trial> trials = new ArrayList<>();
+        Trial trial = new Trial();
+        LocalDateTime dateTime = dateTimeFormatterFromString("2022-12-08 09:42");
+        trial.setDate(dateTime);
+        trial.setIssue("issue");
+        trial.setClientId(client);
+        trial.setUserId(user);
+        trial.setId(12334L);
+        trials.add(trial);
+        return trials;
+
+    }
+
+    public static List<Trial> createTrailsListHourLater(User user, Client client) {
+        List<Trial> trials = new ArrayList<>();
+        Trial trial = new Trial();
+        trial.setDate(LocalDateTime.now().minusHours(1));
+        trial.setIssue("issue");
+        trial.setClientId(client);
+        trial.setUserId(user);
+        trial.setId(12334L);
+        trials.add(trial);
+        return trials;
     }
 }

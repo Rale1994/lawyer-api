@@ -20,6 +20,7 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import java.util.List;
 import java.util.Optional;
 
+import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
@@ -205,6 +206,8 @@ class ClientServiceImplTest {
 
         // THEN
         clientServiceImp.deleteClient(newLogged,clientId);
+
+
 
     }
 }
