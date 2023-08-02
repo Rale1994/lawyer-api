@@ -6,13 +6,19 @@ import com.laywerapi.laywerapi.dto.request.TrialAddRequestDTO;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.hibernate.envers.Audited;
+import org.hibernate.envers.NotAudited;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
+
+import static org.hibernate.envers.RelationTargetAuditMode.NOT_AUDITED;
+
 @Entity(name = "trials")
 @Getter
 @Setter
 @NoArgsConstructor
+@Audited
 public class Trial {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

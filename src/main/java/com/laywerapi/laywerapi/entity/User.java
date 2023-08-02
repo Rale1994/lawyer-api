@@ -4,6 +4,8 @@ import com.laywerapi.laywerapi.dto.request.RegisterUserRequestDTO;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.envers.Audited;
+import org.hibernate.envers.NotAudited;
 
 import javax.persistence.*;
 import java.util.List;
@@ -12,8 +14,8 @@ import java.util.List;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
+@Audited
 public class User {
-
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
@@ -26,6 +28,7 @@ public class User {
     private String role;
     private boolean isEnabled = false;
     @OneToMany(mappedBy = "userId", cascade = CascadeType.ALL)
+
     private List<Client> clients;
     @OneToMany(mappedBy = "userId", cascade = CascadeType.ALL)
     private List<Trial> trials;

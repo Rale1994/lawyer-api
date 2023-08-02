@@ -15,6 +15,8 @@ import com.laywerapi.laywerapi.repositories.UserRepository;
 import com.laywerapi.laywerapi.services.TrialService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.data.envers.repository.support.EnversRevisionRepositoryFactoryBean;
+import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;

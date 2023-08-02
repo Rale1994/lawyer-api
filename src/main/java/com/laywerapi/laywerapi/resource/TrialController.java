@@ -13,6 +13,8 @@ import io.swagger.annotations.Api;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.ApplicationEventPublisher;
+import org.springframework.data.envers.repository.support.EnversRevisionRepositoryFactoryBean;
+import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
@@ -43,17 +45,17 @@ public class TrialController {
         return trialService.getAllClientTrials(loggedUser, clientId);
     }
 
-    @Scheduled(fixedDelay = 60000)
-    void trialMailNotification() {
-        List<Trial> trials = trialService.findUserTrials();
-        if (!trials.isEmpty()) {
-            for (Trial trial : trials) {
-                log.info("Get some trials!");
-                User user = trial.getUserId();
-                publisher.publishEvent(new TrialEmailNotificationEvent(user));
-            }
-        } else {
-            log.warn("Lawyer currently doesn't have any trials!");
-        }
-    }
+//    @Scheduled(fixedDelay = 60000)
+//    void trialMailNotification() {
+//        List<Trial> trials = trialService.findUserTrials();
+//        if (!trials.isEmpty()) {
+//            for (Trial trial : trials) {
+//                log.info("Get some trials!");
+//                User user = trial.getUserId();
+//                publisher.publishEvent(new TrialEmailNotificationEvent(user));
+//            }
+//        } else {
+//            log.warn("Lawyer currently doesn't have any trials!");
+//        }
+//    }
 }

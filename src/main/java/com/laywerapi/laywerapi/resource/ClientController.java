@@ -1,16 +1,12 @@
 package com.laywerapi.laywerapi.resource;
 
-
 import com.laywerapi.laywerapi.dto.request.ClientRequestDTO;
 import com.laywerapi.laywerapi.dto.response.ClientResponseDTO;
-import com.laywerapi.laywerapi.entity.CustomUserDetails;
 import com.laywerapi.laywerapi.entity.UserRegistrationDetails;
 import com.laywerapi.laywerapi.services.ClientService;
-import com.laywerapi.laywerapi.services.implementation.UserRegistrationDetailsImpl;
 import com.laywerapi.laywerapi.shared.Constants;
 import io.swagger.annotations.Api;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
 
@@ -27,11 +23,10 @@ public class ClientController {
         this.clientService = clientService;
     }
 
-
     //    @PreAuthorize("hasRole('USER')")
     @PostMapping("/add")
     public ClientResponseDTO addClient(@AuthenticationPrincipal UserRegistrationDetails loggedUser,
-                                      @RequestBody ClientRequestDTO clientRequestDTO) throws Exception {
+                                       @RequestBody ClientRequestDTO clientRequestDTO) throws Exception {
         return clientService.addClient(loggedUser, clientRequestDTO);
     }
 
@@ -51,7 +46,7 @@ public class ClientController {
 
     @PutMapping("/update/{clientId}")
     public ClientResponseDTO updateClient(@AuthenticationPrincipal UserRegistrationDetails loggedUser,
-                                          @Valid @RequestBody ClientRequestDTO clientRequestDTO,
+                                          @RequestBody ClientRequestDTO clientRequestDTO,
                                           @PathVariable Long clientId) {
         return clientService.updateClient(loggedUser, clientRequestDTO, clientId);
     }
