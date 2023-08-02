@@ -45,17 +45,17 @@ public class TrialController {
         return trialService.getAllClientTrials(loggedUser, clientId);
     }
 
-//    @Scheduled(fixedDelay = 60000)
-//    void trialMailNotification() {
-//        List<Trial> trials = trialService.findUserTrials();
-//        if (!trials.isEmpty()) {
-//            for (Trial trial : trials) {
-//                log.info("Get some trials!");
-//                User user = trial.getUserId();
-//                publisher.publishEvent(new TrialEmailNotificationEvent(user));
-//            }
-//        } else {
-//            log.warn("Lawyer currently doesn't have any trials!");
-//        }
-//    }
+    @Scheduled(fixedDelay = 60000)
+    void trialMailNotification() {
+        List<Trial> trials = trialService.findUserTrials();
+        if (!trials.isEmpty()) {
+            for (Trial trial : trials) {
+                log.info("Get some trials!");
+                User user = trial.getUserId();
+                publisher.publishEvent(new TrialEmailNotificationEvent(user));
+            }
+        } else {
+            log.warn("Lawyer currently doesn't have any trials!");
+        }
+    }
 }
