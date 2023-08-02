@@ -967,3 +967,37 @@ javax.validation.UnexpectedTypeException: HV000030: No validator could be found 
 2023-08-02 16:20:58.067  INFO 25204 --- [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
 2023-08-02 16:20:58.070  INFO 25204 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
 2023-08-02 16:20:58.077  INFO 25204 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2023-08-02 21:20:31.486  INFO 16504 --- [main] c.l.laywerapi.LawyerApiApplication       : Starting LawyerApiApplication using Java 17.0.6 on DESKTOP-NVAMDEM with PID 16504 (C:\Users\Korisnik\Desktop\laywer-api\target\classes started by Korisnik in C:\Users\Korisnik\Desktop\laywer-api)
+2023-08-02 21:20:31.489  INFO 16504 --- [main] c.l.laywerapi.LawyerApiApplication       : No active profile set, falling back to 1 default profile: "default"
+2023-08-02 21:20:32.985  INFO 16504 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2023-08-02 21:20:33.075  INFO 16504 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 80 ms. Found 4 JPA repository interfaces.
+2023-08-02 21:20:34.289  INFO 16504 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8082 (http)
+2023-08-02 21:20:34.306  INFO 16504 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2023-08-02 21:20:34.307  INFO 16504 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.76]
+2023-08-02 21:20:34.554  INFO 16504 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2023-08-02 21:20:34.555  INFO 16504 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 3005 ms
+2023-08-02 21:20:34.830  INFO 16504 --- [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2023-08-02 21:20:34.953  INFO 16504 --- [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 5.6.15.Final
+2023-08-02 21:20:35.234  INFO 16504 --- [main] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+2023-08-02 21:20:35.399  INFO 16504 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2023-08-02 21:20:35.661  INFO 16504 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2023-08-02 21:20:35.706  INFO 16504 --- [main] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.MySQL55Dialect
+2023-08-02 21:20:35.760  INFO 16504 --- [main] o.h.e.boot.internal.EnversServiceImpl    : Envers integration enabled? : true
+2023-08-02 21:20:37.450  INFO 16504 --- [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2023-08-02 21:20:37.459  INFO 16504 --- [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2023-08-02 21:20:38.273  WARN 16504 --- [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2023-08-02 21:20:38.709  INFO 16504 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@393aac93, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@71dac63f, org.springframework.security.web.context.SecurityContextPersistenceFilter@3181fbe7, org.springframework.security.web.header.HeaderWriterFilter@704ca8a8, org.springframework.security.web.authentication.logout.LogoutFilter@5bbf8daa, org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter@5982255e, org.springframework.security.web.authentication.ui.DefaultLoginPageGeneratingFilter@4d62bb8b, org.springframework.security.web.authentication.ui.DefaultLogoutPageGeneratingFilter@36003e90, org.springframework.security.web.authentication.www.BasicAuthenticationFilter@5e1d3188, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@61d7df22, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@722e1bff, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@5a1ddc7c, org.springframework.security.web.session.SessionManagementFilter@1784d711, org.springframework.security.web.access.ExceptionTranslationFilter@437a4e61, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@5d414943]
+2023-08-02 21:20:39.149  INFO 16504 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8082 (http) with context path ''
+2023-08-02 21:20:39.619  INFO 16504 --- [main] c.l.laywerapi.LawyerApiApplication       : Started LawyerApiApplication in 8.726 seconds (JVM running for 9.292)
+2023-08-02 21:20:39.770  WARN 16504 --- [scheduling-1] c.l.laywerapi.resource.TrialController   : Lawyer currently doesn't have any trials!
+2023-08-02 21:21:00.972  INFO 16504 --- [http-nio-8082-exec-3] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2023-08-02 21:21:00.974  INFO 16504 --- [http-nio-8082-exec-3] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2023-08-02 21:21:00.975  INFO 16504 --- [http-nio-8082-exec-3] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2023-08-02 21:21:01.412  INFO 16504 --- [http-nio-8082-exec-3] c.l.l.s.i.ClientServiceImpl              : Updating client information!
+2023-08-02 21:21:01.417 ERROR 16504 --- [http-nio-8082-exec-3] c.l.l.s.i.ClientServiceImpl              : Trying to delete user with id: 138 who don't exist!
+2023-08-02 21:21:21.047  INFO 16504 --- [http-nio-8082-exec-4] c.l.l.s.i.ClientServiceImpl              : Adding client...
+2023-08-02 21:21:32.348  INFO 16504 --- [http-nio-8082-exec-2] c.l.l.s.i.ClientServiceImpl              : Updating client information!
+2023-08-02 21:21:32.354  INFO 16504 --- [http-nio-8082-exec-2] c.l.l.s.i.ClientServiceImpl              : Checking for updates fields...
+2023-08-02 21:21:39.783  WARN 16504 --- [scheduling-1] c.l.laywerapi.resource.TrialController   : Lawyer currently doesn't have any trials!
+2023-08-02 21:22:17.946  INFO 16504 --- [http-nio-8082-exec-5] c.l.l.s.implementation.UserServiceImpl   : Updating account...
+2023-08-02 21:22:17.950  INFO 16504 --- [http-nio-8082-exec-5] c.l.l.s.implementation.UserServiceImpl   : Checking for update fields
