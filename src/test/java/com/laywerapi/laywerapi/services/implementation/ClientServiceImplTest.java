@@ -143,7 +143,7 @@ class ClientServiceImplTest {
 
         // WHEN
         when(clientRepository.findById(clientId)).thenReturn(Optional.of(client));
-        when(utils.checkingForUpdatesClient(client, clientRequestDTO)).thenReturn(updatedClient);
+        when(utils.checkingForUpdates(client, clientRequestDTO)).thenReturn(updatedClient);
         when(clientRepository.save(updatedClient)).thenReturn(updatedClient);
 
         // ACTION

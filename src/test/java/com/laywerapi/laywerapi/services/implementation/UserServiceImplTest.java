@@ -5,7 +5,6 @@ import com.laywerapi.laywerapi.dto.response.UserResponseDTO;
 import com.laywerapi.laywerapi.dto.response.UserUpdatedResponseDTO;
 import com.laywerapi.laywerapi.entity.User;
 import com.laywerapi.laywerapi.entity.UserRegistrationDetails;
-import com.laywerapi.laywerapi.entity.VerificationToken;
 import com.laywerapi.laywerapi.exception.ApiRequestException;
 import com.laywerapi.laywerapi.repositories.UserRepository;
 import com.laywerapi.laywerapi.repositories.VerificationTokenRepository;
@@ -84,7 +83,7 @@ class UserServiceImplTest {
 
         // WHEN
         when(userRepository.findByUsername(newLogged.getUsername())).thenReturn(Optional.of(user));
-        when(utils.checkingForUpdatesUser(user, userUpdateRequestDTO)).thenReturn(updatedUser);
+        when(utils.checkingForUpdates(user, userUpdateRequestDTO)).thenReturn(updatedUser);
         when(userRepository.save(updatedUser)).thenReturn(updatedUser);
 
 
