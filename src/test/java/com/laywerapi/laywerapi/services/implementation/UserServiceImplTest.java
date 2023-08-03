@@ -84,7 +84,7 @@ class UserServiceImplTest {
 
         // WHEN
         when(userRepository.findByUsername(newLogged.getUsername())).thenReturn(Optional.of(user));
-        when(utils.checkingForUpdates(user, userUpdateRequestDTO)).thenReturn(updatedUser);
+        when(utils.checkingForUpdatesUser(user, userUpdateRequestDTO)).thenReturn(updatedUser);
         when(userRepository.save(updatedUser)).thenReturn(updatedUser);
 
 

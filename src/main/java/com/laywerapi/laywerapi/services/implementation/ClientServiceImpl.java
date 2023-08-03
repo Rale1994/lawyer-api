@@ -94,7 +94,7 @@ public class ClientServiceImpl implements ClientService {
             throw new ApiRequestException("You do not have this client!");
         }
         log.info("Checking for updates fields...");
-        Client client = utils.checkingForUpdates(clientOptional.get(), clientRequestDTO);
+        Client client = utils.checkingForUpdatesClient(clientOptional.get(), clientRequestDTO);
         Client updatedClient = clientRepository.save(client);
 
         return new ClientResponseDTO(updatedClient);

@@ -61,7 +61,7 @@ public class UserServiceImpl implements UserService {
         }
         User user = optionalUser.get();
         log.info("Checking for update fields");
-        User userForUpdate = utils.checkingForUpdates(user, userUpdateRequestDTO);
+        User userForUpdate = utils.checkingForUpdatesUser(user, userUpdateRequestDTO);
         userRepository.save(userForUpdate);
 
         return new UserUpdatedResponseDTO(userForUpdate);
