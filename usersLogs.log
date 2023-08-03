@@ -4,3 +4,5 @@
 2023-08-03 00:18:00.960  WARN 16504 --- [scheduling-1] c.l.laywerapi.resource.TrialController   : Lawyer currently doesn't have any trials!
 2023-08-03 00:19:01.013  WARN 16504 --- [scheduling-1] c.l.laywerapi.resource.TrialController   : Lawyer currently doesn't have any trials!
 2023-08-03 03:20:58.306  WARN 16504 --- [HikariPool-1 housekeeper] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=3h2m1s576ms121µs1ns).
+2023-08-03 08:22:56.534  WARN 16504 --- [HikariPool-1 housekeeper] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=5h2m6s144ms408µs500ns).
+2023-08-03 08:23:00.622  WARN 16504 --- [scheduling-1] c.l.laywerapi.resource.TrialController   : Lawyer currently doesn't have any trials!
