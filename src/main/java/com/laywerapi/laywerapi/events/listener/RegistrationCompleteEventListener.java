@@ -61,7 +61,7 @@ public class RegistrationCompleteEventListener implements ApplicationListener<Re
                 "<p> Thank you <br> Users Registration Portal Service";
         MimeMessage message = mailSender.createMimeMessage();
         var messageHelper = new MimeMessageHelper(message);
-        messageHelper.setFrom("exampleuser@example.com", senderName);
+        messageHelper.setFrom("email@example.com", senderName);
         messageHelper.setTo(user.getEmail());
         messageHelper.setSubject(subject);
         messageHelper.setText(mailContent, true);

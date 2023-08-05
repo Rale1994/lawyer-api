@@ -82,7 +82,7 @@ class UserServiceImplTest {
         var updatedUser = TestUtil.createUpdatedUser();
 
         // WHEN
-        when(userRepository.findByUsername(newLogged.getUsername())).thenReturn(Optional.of(user));
+        when(userRepository.findByEmail(newLogged.getUser().getEmail())).thenReturn(Optional.of(user));
         when(utils.checkingForUpdates(user, userUpdateRequestDTO)).thenReturn(updatedUser);
         when(userRepository.save(updatedUser)).thenReturn(updatedUser);
 
@@ -105,7 +105,7 @@ class UserServiceImplTest {
         var updatedUser = TestUtil.createUpdatedUser();
 
         // WHEN
-        when(userRepository.findByUsername(newLogged.getUsername())).thenReturn(Optional.empty());
+        when(userRepository.findByEmail(newLogged.getUser().getEmail())).thenReturn(Optional.empty());
 
         // THEN
         assertThrows(ApiRequestException.class, () -> userServiceImpl.findUserForUpdate(newLogged, userUpdateRequestDTO));

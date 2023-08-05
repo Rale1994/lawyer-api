@@ -43,7 +43,7 @@ public class TrialEmailNotificationCompleteEvent implements ApplicationListener<
                 "<p> Thank you <br> Users Notification Portal Service";
         MimeMessage message = mailSender.createMimeMessage();
         var messageHelper = new MimeMessageHelper(message);
-        messageHelper.setFrom("mail@example.com", senderName);
+        messageHelper.setFrom("email@example.com", senderName);
         messageHelper.setTo(user.getEmail());
         messageHelper.setSubject(subject);
         messageHelper.setText(mailContent, true);

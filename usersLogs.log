@@ -1,47 +1,128 @@
-2023-08-03 00:15:56.878  WARN 16504 --- [HikariPool-1 housekeeper] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=2h11m42s83ms321µs700ns).
-2023-08-03 00:16:00.917  WARN 16504 --- [scheduling-1] c.l.laywerapi.resource.TrialController   : Lawyer currently doesn't have any trials!
-2023-08-03 00:17:00.941  WARN 16504 --- [scheduling-1] c.l.laywerapi.resource.TrialController   : Lawyer currently doesn't have any trials!
-2023-08-03 00:18:00.960  WARN 16504 --- [scheduling-1] c.l.laywerapi.resource.TrialController   : Lawyer currently doesn't have any trials!
-2023-08-03 00:19:01.013  WARN 16504 --- [scheduling-1] c.l.laywerapi.resource.TrialController   : Lawyer currently doesn't have any trials!
-2023-08-03 03:20:58.306  WARN 16504 --- [HikariPool-1 housekeeper] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=3h2m1s576ms121µs1ns).
-2023-08-03 08:22:56.534  WARN 16504 --- [HikariPool-1 housekeeper] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=5h2m6s144ms408µs500ns).
-2023-08-03 08:23:00.622  WARN 16504 --- [scheduling-1] c.l.laywerapi.resource.TrialController   : Lawyer currently doesn't have any trials!
-2023-08-03 08:24:00.662  WARN 16504 --- [scheduling-1] c.l.laywerapi.resource.TrialController   : Lawyer currently doesn't have any trials!
-2023-08-03 08:25:00.674  WARN 16504 --- [scheduling-1] c.l.laywerapi.resource.TrialController   : Lawyer currently doesn't have any trials!
-2023-08-03 08:26:00.684  WARN 16504 --- [scheduling-1] c.l.laywerapi.resource.TrialController   : Lawyer currently doesn't have any trials!
-2023-08-03 08:26:50.284  INFO 16504 --- [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
-2023-08-03 08:26:50.333  INFO 16504 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
-2023-08-03 08:26:50.384  INFO 16504 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
-2023-08-03 08:34:13.559  INFO 22668 --- [main] c.l.laywerapi.LawyerApiApplication       : Starting LawyerApiApplication using Java 17.0.6 on DESKTOP-NVAMDEM with PID 22668 (C:\Users\Korisnik\Desktop\laywer-api\target\classes started by Korisnik in C:\Users\Korisnik\Desktop\laywer-api)
-2023-08-03 08:34:13.566  INFO 22668 --- [main] c.l.laywerapi.LawyerApiApplication       : No active profile set, falling back to 1 default profile: "default"
-2023-08-03 08:34:15.566  INFO 22668 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
-2023-08-03 08:34:15.681  INFO 22668 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 99 ms. Found 4 JPA repository interfaces.
-2023-08-03 08:34:17.255  INFO 22668 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8082 (http)
-2023-08-03 08:34:17.277  INFO 22668 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
-2023-08-03 08:34:17.277  INFO 22668 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.76]
-2023-08-03 08:34:17.577  INFO 22668 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
-2023-08-03 08:34:17.578  INFO 22668 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 3907 ms
-2023-08-03 08:34:17.897  INFO 22668 --- [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
-2023-08-03 08:34:18.023  INFO 22668 --- [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 5.6.15.Final
-2023-08-03 08:34:18.394  INFO 22668 --- [main] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
-2023-08-03 08:34:18.917  INFO 22668 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
-2023-08-03 08:34:19.219  INFO 22668 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
-2023-08-03 08:34:19.257  INFO 22668 --- [main] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.MySQL55Dialect
-2023-08-03 08:34:19.321  INFO 22668 --- [main] o.h.e.boot.internal.EnversServiceImpl    : Envers integration enabled? : true
-2023-08-03 08:34:21.789  INFO 22668 --- [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
-2023-08-03 08:34:21.805  INFO 22668 --- [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
-2023-08-03 08:34:23.027  WARN 22668 --- [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
-2023-08-03 08:34:23.625  INFO 22668 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@5e1d3188, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@5982255e, org.springframework.security.web.context.SecurityContextPersistenceFilter@4624e3d1, org.springframework.security.web.header.HeaderWriterFilter@437a4e61, org.springframework.security.web.authentication.logout.LogoutFilter@130a99fe, org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter@7200702, org.springframework.security.web.authentication.ui.DefaultLoginPageGeneratingFilter@77a35b2f, org.springframework.security.web.authentication.ui.DefaultLogoutPageGeneratingFilter@7306836f, org.springframework.security.web.authentication.www.BasicAuthenticationFilter@236bb278, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@3181fbe7, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@c8e99, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@e9c5db9, org.springframework.security.web.session.SessionManagementFilter@704ca8a8, org.springframework.security.web.access.ExceptionTranslationFilter@6ea1fc9, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@4d6fa22c]
-2023-08-03 08:34:24.228  INFO 22668 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8082 (http) with context path ''
-2023-08-03 08:34:24.953  INFO 22668 --- [main] c.l.laywerapi.LawyerApiApplication       : Started LawyerApiApplication in 12.122 seconds (JVM running for 12.798)
-2023-08-03 08:34:25.181  WARN 22668 --- [scheduling-1] c.l.laywerapi.resource.TrialController   : Lawyer currently doesn't have any trials!
-2023-08-03 08:34:42.917  INFO 22668 --- [http-nio-8082-exec-2] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
-2023-08-03 08:34:42.918  INFO 22668 --- [http-nio-8082-exec-2] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
-2023-08-03 08:34:42.920  INFO 22668 --- [http-nio-8082-exec-2] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
-2023-08-03 08:34:43.669  INFO 22668 --- [http-nio-8082-exec-2] c.l.l.s.implementation.UserServiceImpl   : Updating account...
-2023-08-03 08:34:43.673  INFO 22668 --- [http-nio-8082-exec-2] c.l.l.s.implementation.UserServiceImpl   : Checking for update fields
-2023-08-03 08:34:55.574  INFO 22668 --- [http-nio-8082-exec-3] c.l.l.s.i.ClientServiceImpl              : Updating client information!
-2023-08-03 08:34:55.586  INFO 22668 --- [http-nio-8082-exec-3] c.l.l.s.i.ClientServiceImpl              : Checking for updates fields...
-2023-08-03 08:35:02.624  INFO 22668 --- [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
-2023-08-03 08:35:02.628  INFO 22668 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
-2023-08-03 08:35:02.643  INFO 22668 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2023-08-05 17:26:10.586  INFO 19816 --- [main] c.l.laywerapi.LawyerApiApplication       : Starting LawyerApiApplication using Java 17.0.6 on DESKTOP-NVAMDEM with PID 19816 (C:\Users\Korisnik\Desktop\laywer-api\target\classes started by Korisnik in C:\Users\Korisnik\Desktop\laywer-api)
+2023-08-05 17:26:10.596  INFO 19816 --- [main] c.l.laywerapi.LawyerApiApplication       : No active profile set, falling back to 1 default profile: "default"
+2023-08-05 17:26:12.323  INFO 19816 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2023-08-05 17:26:12.554  INFO 19816 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 186 ms. Found 5 JPA repository interfaces.
+2023-08-05 17:26:14.330  INFO 19816 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8082 (http)
+2023-08-05 17:26:14.356  INFO 19816 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2023-08-05 17:26:14.356  INFO 19816 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.76]
+2023-08-05 17:26:14.616  INFO 19816 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2023-08-05 17:26:14.617  INFO 19816 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 3929 ms
+2023-08-05 17:26:14.974  INFO 19816 --- [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2023-08-05 17:26:15.089  INFO 19816 --- [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 5.6.15.Final
+2023-08-05 17:26:15.442  INFO 19816 --- [main] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+2023-08-05 17:26:15.642  INFO 19816 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2023-08-05 17:26:15.934  INFO 19816 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2023-08-05 17:26:15.991  INFO 19816 --- [main] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.MySQL55Dialect
+2023-08-05 17:26:16.079  INFO 19816 --- [main] o.h.e.boot.internal.EnversServiceImpl    : Envers integration enabled? : true
+2023-08-05 17:26:18.456  INFO 19816 --- [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2023-08-05 17:26:18.475  INFO 19816 --- [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2023-08-05 17:26:19.641  WARN 19816 --- [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2023-08-05 17:26:20.274  INFO 19816 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@cfe881a, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@75f579d2, org.springframework.security.web.context.SecurityContextPersistenceFilter@19e03398, org.springframework.security.web.header.HeaderWriterFilter@28df2da8, org.springframework.security.web.authentication.logout.LogoutFilter@455591ad, org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter@7ca0aa55, org.springframework.security.web.authentication.ui.DefaultLoginPageGeneratingFilter@5dd79a57, org.springframework.security.web.authentication.ui.DefaultLogoutPageGeneratingFilter@61bfd7da, org.springframework.security.web.authentication.www.BasicAuthenticationFilter@10007fdc, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@7c1adb8a, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@72364a40, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@6179af64, org.springframework.security.web.session.SessionManagementFilter@37227aa7, org.springframework.security.web.access.ExceptionTranslationFilter@533a8540, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@520e6089]
+2023-08-05 17:26:20.837  INFO 19816 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8082 (http) with context path ''
+2023-08-05 17:26:21.483  INFO 19816 --- [main] c.l.laywerapi.LawyerApiApplication       : Started LawyerApiApplication in 11.598 seconds (JVM running for 12.382)
+2023-08-05 17:27:51.888  INFO 19816 --- [http-nio-8082-exec-2] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2023-08-05 17:27:51.888  INFO 19816 --- [http-nio-8082-exec-2] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2023-08-05 17:27:51.889  INFO 19816 --- [http-nio-8082-exec-2] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2023-08-05 17:29:18.667  INFO 19816 --- [http-nio-8082-exec-5] c.l.l.s.i.ClientServiceImpl              : Adding client...
+2023-08-05 17:36:06.311  INFO 19816 --- [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2023-08-05 17:36:06.315  INFO 19816 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2023-08-05 17:36:06.327  INFO 19816 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2023-08-05 17:36:20.679  INFO 11520 --- [main] c.l.laywerapi.LawyerApiApplication       : Starting LawyerApiApplication using Java 17.0.6 on DESKTOP-NVAMDEM with PID 11520 (C:\Users\Korisnik\Desktop\laywer-api\target\classes started by Korisnik in C:\Users\Korisnik\Desktop\laywer-api)
+2023-08-05 17:36:20.682  INFO 11520 --- [main] c.l.laywerapi.LawyerApiApplication       : No active profile set, falling back to 1 default profile: "default"
+2023-08-05 17:36:22.046  INFO 11520 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2023-08-05 17:36:22.146  INFO 11520 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 89 ms. Found 5 JPA repository interfaces.
+2023-08-05 17:36:23.390  INFO 11520 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8082 (http)
+2023-08-05 17:36:23.405  INFO 11520 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2023-08-05 17:36:23.406  INFO 11520 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.76]
+2023-08-05 17:36:23.667  INFO 11520 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2023-08-05 17:36:23.668  INFO 11520 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 2920 ms
+2023-08-05 17:36:23.944  INFO 11520 --- [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2023-08-05 17:36:24.059  INFO 11520 --- [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 5.6.15.Final
+2023-08-05 17:36:24.405  INFO 11520 --- [main] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+2023-08-05 17:36:24.569  INFO 11520 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2023-08-05 17:36:24.869  INFO 11520 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2023-08-05 17:36:24.913  INFO 11520 --- [main] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.MySQL55Dialect
+2023-08-05 17:36:24.954  INFO 11520 --- [main] o.h.e.boot.internal.EnversServiceImpl    : Envers integration enabled? : true
+2023-08-05 17:36:27.313  INFO 11520 --- [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2023-08-05 17:36:27.330  INFO 11520 --- [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2023-08-05 17:36:28.542  WARN 11520 --- [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2023-08-05 17:36:29.105  INFO 11520 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@2db07651, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@718b9d56, org.springframework.security.web.context.SecurityContextPersistenceFilter@59b8a801, org.springframework.security.web.header.HeaderWriterFilter@79e3f444, org.springframework.security.web.authentication.logout.LogoutFilter@30b5f974, org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter@2aaed928, org.springframework.security.web.authentication.ui.DefaultLoginPageGeneratingFilter@7e474bd, org.springframework.security.web.authentication.ui.DefaultLogoutPageGeneratingFilter@36a59d8, org.springframework.security.web.authentication.www.BasicAuthenticationFilter@5e8f0c54, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@42365c82, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@46c47690, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@51751265, org.springframework.security.web.session.SessionManagementFilter@14ea3ecf, org.springframework.security.web.access.ExceptionTranslationFilter@2b33e616, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@217abcc9]
+2023-08-05 17:36:29.656  INFO 11520 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8082 (http) with context path ''
+2023-08-05 17:36:30.282  INFO 11520 --- [main] c.l.laywerapi.LawyerApiApplication       : Started LawyerApiApplication in 10.217 seconds (JVM running for 10.925)
+2023-08-05 17:37:29.932  INFO 11520 --- [http-nio-8082-exec-2] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2023-08-05 17:37:29.933  INFO 11520 --- [http-nio-8082-exec-2] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2023-08-05 17:37:29.935  INFO 11520 --- [http-nio-8082-exec-2] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2023-08-05 17:37:30.231 ERROR 11520 --- [http-nio-8082-exec-2] c.l.l.s.implementation.UserServiceImpl   : User with emailmiricmiki222@gmail.com already exists!
+2023-08-05 17:37:41.298  INFO 11520 --- [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2023-08-05 17:37:41.301  INFO 11520 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2023-08-05 17:37:41.313  INFO 11520 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2023-08-05 17:37:44.653  INFO 11328 --- [main] c.l.laywerapi.LawyerApiApplication       : Starting LawyerApiApplication using Java 17.0.6 on DESKTOP-NVAMDEM with PID 11328 (C:\Users\Korisnik\Desktop\laywer-api\target\classes started by Korisnik in C:\Users\Korisnik\Desktop\laywer-api)
+2023-08-05 17:37:44.656  INFO 11328 --- [main] c.l.laywerapi.LawyerApiApplication       : No active profile set, falling back to 1 default profile: "default"
+2023-08-05 17:37:45.879  INFO 11328 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2023-08-05 17:37:45.965  INFO 11328 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 73 ms. Found 5 JPA repository interfaces.
+2023-08-05 17:37:46.960  INFO 11328 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8082 (http)
+2023-08-05 17:37:46.975  INFO 11328 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2023-08-05 17:37:46.976  INFO 11328 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.76]
+2023-08-05 17:37:47.151  INFO 11328 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2023-08-05 17:37:47.152  INFO 11328 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 2424 ms
+2023-08-05 17:37:47.404  INFO 11328 --- [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2023-08-05 17:37:47.473  INFO 11328 --- [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 5.6.15.Final
+2023-08-05 17:37:47.702  INFO 11328 --- [main] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+2023-08-05 17:37:47.839  INFO 11328 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2023-08-05 17:37:48.040  INFO 11328 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2023-08-05 17:37:48.065  INFO 11328 --- [main] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.MySQL55Dialect
+2023-08-05 17:37:48.099  INFO 11328 --- [main] o.h.e.boot.internal.EnversServiceImpl    : Envers integration enabled? : true
+2023-08-05 17:37:49.841  INFO 11328 --- [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2023-08-05 17:37:49.851  INFO 11328 --- [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2023-08-05 17:37:50.668  WARN 11328 --- [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2023-08-05 17:37:51.082  INFO 11328 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@5f9f1886, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@136a5572, org.springframework.security.web.context.SecurityContextPersistenceFilter@12e3cf1c, org.springframework.security.web.header.HeaderWriterFilter@1f832df0, org.springframework.security.web.authentication.logout.LogoutFilter@a23b96b, org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter@59c2bf78, org.springframework.security.web.authentication.ui.DefaultLoginPageGeneratingFilter@6810465, org.springframework.security.web.authentication.ui.DefaultLogoutPageGeneratingFilter@11548363, org.springframework.security.web.authentication.www.BasicAuthenticationFilter@2ff2a096, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@533a8540, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@24489d12, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@6be865c1, org.springframework.security.web.session.SessionManagementFilter@22781286, org.springframework.security.web.access.ExceptionTranslationFilter@157e0f6b, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@51751265]
+2023-08-05 17:37:51.519  INFO 11328 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8082 (http) with context path ''
+2023-08-05 17:37:51.992  INFO 11328 --- [main] c.l.laywerapi.LawyerApiApplication       : Started LawyerApiApplication in 7.837 seconds (JVM running for 8.322)
+2023-08-05 17:38:32.507  INFO 11328 --- [http-nio-8082-exec-2] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2023-08-05 17:38:32.507  INFO 11328 --- [http-nio-8082-exec-2] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2023-08-05 17:38:32.510  INFO 11328 --- [http-nio-8082-exec-2] o.s.web.servlet.DispatcherServlet        : Completed initialization in 2 ms
+2023-08-05 17:38:32.857 ERROR 11328 --- [http-nio-8082-exec-2] c.l.l.s.implementation.UserServiceImpl   : User with emailmiricmiki222@gmail.com already exists!
+2023-08-05 17:38:53.041  INFO 11328 --- [http-nio-8082-exec-3] .l.e.l.RegistrationCompleteEventListener : Click the link to verify your registration : http://localhost:8082/api/v1/registration/verifyEmail?token=dd9e317e-f9f9-4e29-9894-12a7c427f932
+2023-08-05 17:39:04.330  INFO 11328 --- [http-nio-8082-exec-4] c.l.l.s.implementation.UserServiceImpl   : Validating token...
+2023-08-05 17:39:19.928  INFO 11328 --- [http-nio-8082-exec-6] c.l.l.s.i.ClientServiceImpl              : Adding client...
+2023-08-05 17:40:41.530  INFO 11328 --- [http-nio-8082-exec-10] c.l.l.s.i.ClientServiceImpl              : Adding client...
+2023-08-05 17:40:41.534 ERROR 11328 --- [http-nio-8082-exec-10] c.l.l.s.i.ClientServiceImpl              : We have some client with this email
+2023-08-05 17:40:41.535 ERROR 11328 --- [http-nio-8082-exec-10] c.l.l.s.i.ClientServiceImpl              : Lawyer already has this client!
+2023-08-05 17:40:57.505  INFO 11328 --- [http-nio-8082-exec-1] c.l.l.s.i.ClientServiceImpl              : Adding client...
+2023-08-05 17:42:00.212  INFO 11328 --- [http-nio-8082-exec-4] c.l.l.s.i.ClientServiceImpl              : Adding client...
+2023-08-05 17:42:06.442  INFO 11328 --- [http-nio-8082-exec-5] c.l.l.s.i.ClientServiceImpl              : Adding client...
+2023-08-05 17:42:06.446 ERROR 11328 --- [http-nio-8082-exec-5] c.l.l.s.i.ClientServiceImpl              : We have some client with this email
+2023-08-05 17:42:06.447 ERROR 11328 --- [http-nio-8082-exec-5] c.l.l.s.i.ClientServiceImpl              : Lawyer already has this client!
+2023-08-05 17:42:13.675  INFO 11328 --- [http-nio-8082-exec-6] c.l.l.s.i.ClientServiceImpl              : Adding client...
+2023-08-05 17:42:19.417  INFO 11328 --- [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2023-08-05 17:42:19.418  INFO 11328 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2023-08-05 17:42:19.428  INFO 11328 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2023-08-05 17:42:26.699  INFO 2440 --- [main] c.l.laywerapi.LawyerApiApplication       : Starting LawyerApiApplication using Java 17.0.6 on DESKTOP-NVAMDEM with PID 2440 (C:\Users\Korisnik\Desktop\laywer-api\target\classes started by Korisnik in C:\Users\Korisnik\Desktop\laywer-api)
+2023-08-05 17:42:26.704  INFO 2440 --- [main] c.l.laywerapi.LawyerApiApplication       : No active profile set, falling back to 1 default profile: "default"
+2023-08-05 17:42:27.903  INFO 2440 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2023-08-05 17:42:27.979  INFO 2440 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 66 ms. Found 5 JPA repository interfaces.
+2023-08-05 17:42:29.015  INFO 2440 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8082 (http)
+2023-08-05 17:42:29.027  INFO 2440 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2023-08-05 17:42:29.028  INFO 2440 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.76]
+2023-08-05 17:42:29.286  INFO 2440 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2023-08-05 17:42:29.286  INFO 2440 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 2510 ms
+2023-08-05 17:42:29.537  INFO 2440 --- [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2023-08-05 17:42:29.609  INFO 2440 --- [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 5.6.15.Final
+2023-08-05 17:42:29.829  INFO 2440 --- [main] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+2023-08-05 17:42:29.965  INFO 2440 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2023-08-05 17:42:30.189  INFO 2440 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2023-08-05 17:42:30.226  INFO 2440 --- [main] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.MySQL55Dialect
+2023-08-05 17:42:30.272  INFO 2440 --- [main] o.h.e.boot.internal.EnversServiceImpl    : Envers integration enabled? : true
+2023-08-05 17:42:31.962  INFO 2440 --- [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2023-08-05 17:42:31.973  INFO 2440 --- [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2023-08-05 17:42:32.884  WARN 2440 --- [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2023-08-05 17:42:33.340  INFO 2440 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@bedebe9, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@6592a73b, org.springframework.security.web.context.SecurityContextPersistenceFilter@6cbb79c3, org.springframework.security.web.header.HeaderWriterFilter@15a87fbb, org.springframework.security.web.authentication.logout.LogoutFilter@26f0ab88, org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter@5cb654e3, org.springframework.security.web.authentication.ui.DefaultLoginPageGeneratingFilter@62a78446, org.springframework.security.web.authentication.ui.DefaultLogoutPageGeneratingFilter@14f11a56, org.springframework.security.web.authentication.www.BasicAuthenticationFilter@781ecbac, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@409b1740, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@32dc895e, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@11ce61d1, org.springframework.security.web.session.SessionManagementFilter@a23b96b, org.springframework.security.web.access.ExceptionTranslationFilter@3f7b15bb, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@51a8aed8]
+2023-08-05 17:42:33.777  INFO 2440 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8082 (http) with context path ''
+2023-08-05 17:42:34.281  INFO 2440 --- [main] c.l.laywerapi.LawyerApiApplication       : Started LawyerApiApplication in 8.157 seconds (JVM running for 8.697)
+2023-08-05 17:42:50.571  INFO 2440 --- [http-nio-8082-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2023-08-05 17:42:50.572  INFO 2440 --- [http-nio-8082-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2023-08-05 17:42:50.574  INFO 2440 --- [http-nio-8082-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2023-08-05 17:43:01.340  INFO 2440 --- [http-nio-8082-exec-3] c.l.l.s.i.ClientServiceImpl              : Adding client...
+2023-08-05 17:43:16.485  INFO 2440 --- [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2023-08-05 17:43:16.487  INFO 2440 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2023-08-05 17:43:16.498  INFO 2440 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.

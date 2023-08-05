@@ -16,13 +16,11 @@ import org.springframework.security.web.SecurityFilterChain;
 @EnableWebSecurity
 @EnableMethodSecurity
 public class SecurityConfig {
-
     private final UserRegistrationDetailsImpl userRegistrationDetails;
 
     public SecurityConfig(UserRegistrationDetailsImpl userRegistrationDetails) {
         this.userRegistrationDetails = userRegistrationDetails;
     }
-
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
@@ -41,7 +39,6 @@ public class SecurityConfig {
                 .and()
                 .build();
     }
-
 
     @Bean
     PasswordEncoder passwordEncoder() {

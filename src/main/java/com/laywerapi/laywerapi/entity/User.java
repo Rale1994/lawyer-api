@@ -28,7 +28,6 @@ public class User {
     private String role;
     private boolean isEnabled = false;
     @OneToMany(mappedBy = "userId", cascade = CascadeType.ALL)
-
     private List<Client> clients;
     @OneToMany(mappedBy = "userId", cascade = CascadeType.ALL)
     private List<Trial> trials;

@@ -21,4 +21,6 @@ public interface UserService {
     void saveUserVerificationToken(User user, String verificationToken);
 
     String validateToken(String verificationToken);
+
+    void resetUserPassword(User user, String newPassword);
 }

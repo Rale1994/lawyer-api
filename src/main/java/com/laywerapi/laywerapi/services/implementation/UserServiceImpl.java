@@ -56,8 +56,8 @@ public class UserServiceImpl implements UserService {
         log.info("Updating account...");
         Optional<User> optionalUser = userRepository.findByEmail(loggedUser.getUser().getEmail());
         if (optionalUser.isEmpty()) {
-            log.error("User with email: "+loggedUser.getUser().getEmail()+" does not exist");
-            throw new ApiRequestException("User with email: "+loggedUser.getUser().getEmail()+" does not exist");
+            log.error("User with email: " + loggedUser.getUser().getEmail() + " does not exist");
+            throw new ApiRequestException("User with email: " + loggedUser.getUser().getEmail() + " does not exist");
         }
         User user = optionalUser.get();
         log.info("Checking for update fields");
@@ -110,5 +110,11 @@ public class UserServiceImpl implements UserService {
         user.setEnabled(true);
         userRepository.save(user);
         return "valid";
+    }
+
+    @Override
+    public void resetUserPassword(User user, String newPassword) {
+        user.setPassword(passwordEncoder.encode(newPassword));
+        userRepository.save(user);
     }
 }
